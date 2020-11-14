@@ -1,0 +1,9 @@
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\bin\Debug\netstandard2.1\Mayor.Services.Mapping.deps.json
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\bin\Debug\netstandard2.1\Mayor.Services.Mapping.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\bin\Debug\netstandard2.1\Mayor.Services.Mapping.pdb
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\obj\Debug\netstandard2.1\Mayor.Services.Mapping.csprojAssemblyReference.cache
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\obj\Debug\netstandard2.1\Mayor.Services.Mapping.AssemblyInfoInputs.cache
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\obj\Debug\netstandard2.1\Mayor.Services.Mapping.AssemblyInfo.cs
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\obj\Debug\netstandard2.1\Mayor.Services.Mapping.csproj.CoreCompileInputs.cache
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\obj\Debug\netstandard2.1\Mayor.Services.Mapping.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Mapping\obj\Debug\netstandard2.1\Mayor.Services.Mapping.pdb

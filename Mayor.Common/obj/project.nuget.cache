@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4LaRkhO1+T1sHhtq5lAF3lGZd/MDE1iXpfY4zt2CCt3oiI+Fco65lKLC7EDzVV7mFACupWRIV6Cr0sQ6s93u9w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Stoyan\\Desktop\\MyProj\\Mayor.Common\\Mayor.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Stoyan\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
+    "C:\\Users\\Stoyan\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512"
+  ],
+  "logs": []
+}

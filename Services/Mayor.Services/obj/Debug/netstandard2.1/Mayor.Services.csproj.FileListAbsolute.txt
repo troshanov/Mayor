@@ -1,0 +1,9 @@
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\bin\Debug\netstandard2.1\Mayor.Services.deps.json
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\bin\Debug\netstandard2.1\Mayor.Services.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\bin\Debug\netstandard2.1\Mayor.Services.pdb
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\obj\Debug\netstandard2.1\Mayor.Services.csprojAssemblyReference.cache
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\obj\Debug\netstandard2.1\Mayor.Services.AssemblyInfoInputs.cache
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\obj\Debug\netstandard2.1\Mayor.Services.AssemblyInfo.cs
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\obj\Debug\netstandard2.1\Mayor.Services.csproj.CoreCompileInputs.cache
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\obj\Debug\netstandard2.1\Mayor.Services.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services\obj\Debug\netstandard2.1\Mayor.Services.pdb

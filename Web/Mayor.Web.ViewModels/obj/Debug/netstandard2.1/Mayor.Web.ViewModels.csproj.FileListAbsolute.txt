@@ -1,0 +1,16 @@
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.deps.json
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.dll
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.pdb
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Data.Common.dll
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Data.Models.dll
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Services.Mapping.dll
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Data.Models.pdb
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Services.Mapping.pdb
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\bin\Debug\netstandard2.1\Mayor.Data.Common.pdb
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.csprojAssemblyReference.cache
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.AssemblyInfoInputs.cache
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.AssemblyInfo.cs
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.csproj.CopyComplete
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.dll
+C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.ViewModels\obj\Debug\netstandard2.1\Mayor.Web.ViewModels.pdb

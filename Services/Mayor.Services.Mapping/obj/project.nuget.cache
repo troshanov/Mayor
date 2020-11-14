@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "m5CpY7aiLaYpgFTeuyp6sK/QH1r69lNIEco72myoUYOo88N2PTA+gLWDj5VkCLPdnzQ7n4zs+2hPWYsrpqcsJA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Stoyan\\Desktop\\MyProj\\Services\\Mayor.Services.Mapping\\Mayor.Services.Mapping.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Stoyan\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Stoyan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Stoyan\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
+    "C:\\Users\\Stoyan\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512",
+    "C:\\Users\\Stoyan\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
