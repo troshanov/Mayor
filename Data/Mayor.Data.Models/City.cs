@@ -13,7 +13,7 @@
         }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(20)]
         public string Name { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
