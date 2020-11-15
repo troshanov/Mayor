@@ -8,7 +8,6 @@
     using Mayor.Data.Models;
     using Mayor.Data.Repositories;
     using Mayor.Data.Seeding;
-    using Mayor.Services.Data;
     using Mayor.Services.Mapping;
     using Mayor.Services.Messaging;
     using Mayor.Web.ViewModels;
@@ -63,7 +62,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
