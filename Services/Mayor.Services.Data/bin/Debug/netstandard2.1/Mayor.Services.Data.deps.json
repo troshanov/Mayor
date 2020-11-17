@@ -12,6 +12,7 @@
           "Mayor.Data.Common": "1.0.0",
           "Mayor.Data.Models": "1.0.0",
           "Mayor.Services.Mapping": "1.0.0",
+          "Mayor.Web.ViewModels": "1.0.0",
           "StyleCop.Analyzers": "1.2.0-beta.205"
         },
         "runtime": {
@@ -387,6 +388,15 @@
         "runtime": {
           "Mayor.Services.Mapping.dll": {}
         }
+      },
+      "Mayor.Web.ViewModels/1.0.0": {
+        "dependencies": {
+          "Mayor.Data.Models": "1.0.0",
+          "Mayor.Services.Mapping": "1.0.0"
+        },
+        "runtime": {
+          "Mayor.Web.ViewModels.dll": {}
+        }
       }
     }
   },
@@ -652,6 +662,11 @@
       "sha512": ""
     },
     "Mayor.Services.Mapping/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Mayor.Web.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -14,3 +14,5 @@ C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandar
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.csproj.CopyComplete
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.dll
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.pdb
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.pdb

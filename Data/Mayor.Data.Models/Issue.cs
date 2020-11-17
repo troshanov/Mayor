@@ -34,7 +34,7 @@
 
         public virtual Address Address { get; set; }
 
-        public int TitlePictureId { get; set; }
+        public string TitlePictureId { get; set; }
 
         public virtual Picture TitlePicture { get; set; }
 

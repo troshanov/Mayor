@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\Mayor.Services.Mapping\Mayor.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="City\" />
+  </ItemGroup>
+
 </Project>

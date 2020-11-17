@@ -404,10 +404,7 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int>("TitlePictureId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TitlePictureId1")
+                    b.Property<string>("TitlePictureId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -424,7 +421,7 @@ namespace Mayor.Data.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.HasIndex("TitlePictureId1");
+                    b.HasIndex("TitlePictureId");
 
                     b.ToTable("Issues");
                 });
@@ -784,7 +781,7 @@ namespace Mayor.Data.Migrations
 
                     b.HasOne("Mayor.Data.Models.Picture", "TitlePicture")
                         .WithMany("Issues")
-                        .HasForeignKey("TitlePictureId1");
+                        .HasForeignKey("TitlePictureId");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueAttachment", b =>

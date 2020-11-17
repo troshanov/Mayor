@@ -1,7 +1,6 @@
 C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\bin\Debug\netstandard2.1\Mayor.Common.deps.json
 C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\bin\Debug\netstandard2.1\Mayor.Common.dll
 C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\bin\Debug\netstandard2.1\Mayor.Common.pdb
-C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\obj\Debug\netstandard2.1\Mayor.Common.csprojAssemblyReference.cache
 C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\obj\Debug\netstandard2.1\Mayor.Common.AssemblyInfoInputs.cache
 C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\obj\Debug\netstandard2.1\Mayor.Common.AssemblyInfo.cs
 C:\Users\Stoyan\Desktop\MyProj\Mayor.Common\obj\Debug\netstandard2.1\Mayor.Common.csproj.CoreCompileInputs.cache

@@ -1711,7 +1711,8 @@
         "dependencies": {
           "Mayor.Data.Common": "1.0.0",
           "Mayor.Data.Models": "1.0.0",
-          "Mayor.Services.Mapping": "1.0.0"
+          "Mayor.Services.Mapping": "1.0.0",
+          "Mayor.Web.ViewModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Mayor.Services.Data.dll": {}
@@ -1744,6 +1745,20 @@
         },
         "runtime": {
           "bin/placeholder/Mayor.Services.Messaging.dll": {}
+        }
+      },
+      "Mayor.Web.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Mayor.Data.Models": "1.0.0",
+          "Mayor.Services.Mapping": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Mayor.Web.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mayor.Web.ViewModels.dll": {}
         }
       }
     }
@@ -6126,6 +6141,11 @@
       "type": "project",
       "path": "../../Services/Mayor.Services.Messaging/Mayor.Services.Messaging.csproj",
       "msbuildProject": "../../Services/Mayor.Services.Messaging/Mayor.Services.Messaging.csproj"
+    },
+    "Mayor.Web.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../../Web/Mayor.Web.ViewModels/Mayor.Web.ViewModels.csproj",
+      "msbuildProject": "../../Web/Mayor.Web.ViewModels/Mayor.Web.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
