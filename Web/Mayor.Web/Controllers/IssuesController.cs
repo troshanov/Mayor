@@ -3,6 +3,7 @@ using Mayor.Services.Data.Issues;
 using Mayor.Web.ViewModels.Issue;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Mayor.Web.Controllers
@@ -36,11 +37,21 @@ namespace Mayor.Web.Controllers
             if (!this.ModelState.IsValid)
             {
                 input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
-                return this.View();
+                return this.View(input);
             }
 
-            var rootPath = $"{this.environment.WebRootPath}/img";
-            await this.issuesService.CreateAsync(input, rootPath);
+            var rootPath = $"{this.environment.WebRootPath}";
+
+            try
+            {
+                await this.issuesService.CreateAsync(input, rootPath);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                return this.View(input);
+            }
 
             return this.Redirect("/");
         }

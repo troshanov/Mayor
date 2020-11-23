@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using Mayor.Data.Common.Models;
 
     public class Attachment : BaseDeletableModel<string>
@@ -16,6 +17,9 @@
 
         [Required]
         public string AddedByUserId { get; set; }
+
+        [Required]
+        public string Extension { get; set; }
 
         public ApplicationUser AddedByUser { get; set; }
 

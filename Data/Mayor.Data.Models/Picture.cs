@@ -12,6 +12,7 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
+        [Required]
         public string Extension { get; set; }
 
         [Required]

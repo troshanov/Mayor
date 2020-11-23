@@ -23,7 +23,10 @@
 
         public int CategoryId { get; set; }
 
+        [Required]
         public IFormFile TitlePicture { get; set; }
+
+        public ICollection<IFormFile> Attachments { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }

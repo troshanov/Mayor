@@ -8,6 +8,7 @@
 <div class="form-wrapper border border-dark rounded-pill">
     <h2 class="offset-3" style="font-family: cursive; font-size: 2rem; margin-top: 20px; color: tomato;">Create a new issue</h2>
     <form method="POST" style="margin-top: 30px;" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label asp-for="Title" class="issue-form-lbl">Title</label>
@@ -50,7 +51,7 @@
                     </div>
                     <div class="col-5" style="margin-top:15px;">
                         <label asp-for="CategoryId" class="issue-form-lbl">Category</label>
-                       <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
+                        <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
                 </div>
@@ -58,14 +59,15 @@
                     <div class="form-group col-6">
                         <div class="custom-file">
                             <label asp-for="TitlePicture" class="issue-form-lbl">Title Picture</label>
-                            <input asp-for="TitlePicture" type="file" id="picUpload">
+                            <input asp-for="TitlePicture" type="file">
                             <span asp-validation-for="TitlePicture" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group col-5 offset-1">
                         <div class="custom-file">
-                            <label for="attachments" class="issue-form-lbl">Attachments</label>
-                            <input type="file" name="attachments" id="attachments" multiple><br><br>
+                            <label asp-for="Attachments" class="issue-form-lbl">Attachments</label>
+                            <input asp-for="Attachments" type="file"multiple><br><br>
+                            <span asp-validation-for="Attachments" class="text-danger"></span> 
                         </div>
                     </div>
                 </div>
