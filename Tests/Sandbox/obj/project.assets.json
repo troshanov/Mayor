@@ -1711,6 +1711,7 @@
         "dependencies": {
           "Mayor.Data.Common": "1.0.0",
           "Mayor.Data.Models": "1.0.0",
+          "Mayor.Services": "1.0.0",
           "Mayor.Services.Mapping": "1.0.0",
           "Mayor.Web.ViewModels": "1.0.0"
         },

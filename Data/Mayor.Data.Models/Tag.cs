@@ -15,8 +15,6 @@
         [Required]
         public string Value { get; set; }
 
-        public int IssueId { get; set; }
-
         public virtual ICollection<IssueTag> IssueTags { get; set; }
     }
 }

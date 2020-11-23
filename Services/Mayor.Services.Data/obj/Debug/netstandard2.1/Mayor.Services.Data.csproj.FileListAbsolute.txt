@@ -3,10 +3,14 @@ C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandar
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Services.Data.pdb
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Data.Common.dll
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Data.Models.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Services.dll
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Services.Mapping.dll
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.dll
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Data.Common.pdb
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Data.Models.pdb
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.pdb
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Services.Mapping.pdb
+C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Services.pdb
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.csprojAssemblyReference.cache
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.AssemblyInfoInputs.cache
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.AssemblyInfo.cs
@@ -14,5 +18,3 @@ C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandar
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.csproj.CopyComplete
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.dll
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\obj\Debug\netstandard2.1\Mayor.Services.Data.pdb
-C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.dll
-C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Data\bin\Debug\netstandard2.1\Mayor.Web.ViewModels.pdb

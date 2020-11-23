@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Data\Mayor.Data.Models\Mayor.Data.Models.csproj" />
     <ProjectReference Include="..\..\Web\Mayor.Web.ViewModels\Mayor.Web.ViewModels.csproj" />
     <ProjectReference Include="..\Mayor.Services.Mapping\Mayor.Services.Mapping.csproj" />
+    <ProjectReference Include="..\Mayor.Services\Mayor.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@
         "dependencies": {
           "Mayor.Data.Common": "1.0.0",
           "Mayor.Data.Models": "1.0.0",
+          "Mayor.Services": "1.0.0",
           "Mayor.Services.Mapping": "1.0.0",
           "Mayor.Web.ViewModels": "1.0.0",
           "StyleCop.Analyzers": "1.2.0-beta.205"
@@ -381,6 +382,11 @@
           "Mayor.Data.Models.dll": {}
         }
       },
+      "Mayor.Services/1.0.0": {
+        "runtime": {
+          "Mayor.Services.dll": {}
+        }
+      },
       "Mayor.Services.Mapping/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1"
@@ -657,6 +663,11 @@
       "sha512": ""
     },
     "Mayor.Data.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Mayor.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

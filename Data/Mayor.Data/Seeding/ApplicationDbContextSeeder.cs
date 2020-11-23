@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Mayor.Data.Seeding.Categories;
+    using Mayor.Data.Seeding.Statuses;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
@@ -26,6 +28,8 @@
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
+                              new CategoriesSeeder(),
+                              new StatusesSeeder(),
                           };
 
             foreach (var seeder in seeders)

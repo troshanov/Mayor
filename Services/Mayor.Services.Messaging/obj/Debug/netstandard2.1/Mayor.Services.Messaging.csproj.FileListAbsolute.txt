@@ -1,7 +1,6 @@
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\bin\Debug\netstandard2.1\Mayor.Services.Messaging.deps.json
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\bin\Debug\netstandard2.1\Mayor.Services.Messaging.dll
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\bin\Debug\netstandard2.1\Mayor.Services.Messaging.pdb
-C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\obj\Debug\netstandard2.1\Mayor.Services.Messaging.csprojAssemblyReference.cache
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\obj\Debug\netstandard2.1\Mayor.Services.Messaging.AssemblyInfoInputs.cache
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\obj\Debug\netstandard2.1\Mayor.Services.Messaging.AssemblyInfo.cs
 C:\Users\Stoyan\Desktop\MyProj\Services\Mayor.Services.Messaging\obj\Debug\netstandard2.1\Mayor.Services.Messaging.csproj.CoreCompileInputs.cache

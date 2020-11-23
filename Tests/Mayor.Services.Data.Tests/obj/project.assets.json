@@ -2688,12 +2688,23 @@
           "bin/placeholder/Mayor.Data.Models.dll": {}
         }
       },
+      "Mayor.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Mayor.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mayor.Services.dll": {}
+        }
+      },
       "Mayor.Services.Data/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "Mayor.Data.Common": "1.0.0",
           "Mayor.Data.Models": "1.0.0",
+          "Mayor.Services": "1.0.0",
           "Mayor.Services.Mapping": "1.0.0",
           "Mayor.Web.ViewModels": "1.0.0"
         },
@@ -8571,6 +8582,11 @@
       "type": "project",
       "path": "../../Data/Mayor.Data.Models/Mayor.Data.Models.csproj",
       "msbuildProject": "../../Data/Mayor.Data.Models/Mayor.Data.Models.csproj"
+    },
+    "Mayor.Services/1.0.0": {
+      "type": "project",
+      "path": "../../Services/Mayor.Services/Mayor.Services.csproj",
+      "msbuildProject": "../../Services/Mayor.Services/Mayor.Services.csproj"
     },
     "Mayor.Services.Data/1.0.0": {
       "type": "project",
