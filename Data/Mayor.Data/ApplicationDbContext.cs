@@ -86,6 +86,7 @@
             this.IssueRequestAttachmentConfiguration(builder);
             this.IssueReviewConfiguration(builder);
             this.IssueTagConfiguration(builder);
+            this.PictureConfiguration(builder);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 
@@ -169,6 +170,13 @@
         {
             builder.Entity<IssueTag>()
                 .HasKey(x => new { x.TagId, x.IssueId });
+        }
+
+        private void PictureConfiguration(ModelBuilder builder)
+        {
+            builder.Entity<Picture>()
+                .HasOne(p => p.Issue).WithOne(i => i.TitlePicture)
+                .HasForeignKey<Issue>(i => i.TitlePictureId);
         }
     }
 }

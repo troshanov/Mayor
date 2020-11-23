@@ -15,16 +15,16 @@ namespace Mayor.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("Mayor.Data.Models.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("CityId")
                         .HasColumnType("int");
@@ -46,8 +46,8 @@ namespace Mayor.Data.Migrations
 
                     b.Property<string>("Street")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("StreetNumber")
                         .HasColumnType("int");
@@ -83,12 +83,12 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -96,7 +96,7 @@ namespace Mayor.Data.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
@@ -124,8 +124,8 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -143,12 +143,12 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -159,9 +159,6 @@ namespace Mayor.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PictureId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -169,8 +166,8 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -179,14 +176,12 @@ namespace Mayor.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("PictureId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -194,6 +189,10 @@ namespace Mayor.Data.Migrations
             modelBuilder.Entity("Mayor.Data.Models.Attachment", b =>
                 {
                     b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AddedByUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -210,6 +209,8 @@ namespace Mayor.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedByUserId");
+
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Attachments");
@@ -220,7 +221,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -250,7 +251,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime2");
@@ -263,16 +264,16 @@ namespace Mayor.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -297,7 +298,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -307,8 +308,8 @@ namespace Mayor.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
@@ -320,7 +321,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -339,8 +340,8 @@ namespace Mayor.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Rating")
                         .HasColumnType("decimal(18,2)");
@@ -349,8 +350,8 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WebsiteUrl")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
@@ -366,7 +367,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -401,8 +402,8 @@ namespace Mayor.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("TitlePictureId")
                         .HasColumnType("nvarchar(450)");
@@ -421,7 +422,9 @@ namespace Mayor.Data.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.HasIndex("TitlePictureId");
+                    b.HasIndex("TitlePictureId")
+                        .IsUnique()
+                        .HasFilter("[TitlePictureId] IS NOT NULL");
 
                     b.ToTable("Issues");
                 });
@@ -446,7 +449,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -548,6 +551,10 @@ namespace Mayor.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AddedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -560,10 +567,15 @@ namespace Mayor.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("IssueId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddedByUserId");
 
                     b.HasIndex("IsDeleted");
 
@@ -575,7 +587,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("StatusCode")
                         .IsRequired()
@@ -591,7 +603,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -613,7 +625,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -637,7 +649,7 @@ namespace Mayor.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -719,6 +731,8 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.ApplicationUser", b =>
@@ -726,10 +740,17 @@ namespace Mayor.Data.Migrations
                     b.HasOne("Mayor.Data.Models.Address", null)
                         .WithMany("Users")
                         .HasForeignKey("AddressId");
+                });
 
-                    b.HasOne("Mayor.Data.Models.Picture", null)
-                        .WithMany("Users")
-                        .HasForeignKey("PictureId");
+            modelBuilder.Entity("Mayor.Data.Models.Attachment", b =>
+                {
+                    b.HasOne("Mayor.Data.Models.ApplicationUser", "AddedByUser")
+                        .WithMany()
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AddedByUser");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.Citizen", b =>
@@ -737,6 +758,8 @@ namespace Mayor.Data.Migrations
                     b.HasOne("Mayor.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.Institution", b =>
@@ -744,6 +767,8 @@ namespace Mayor.Data.Migrations
                     b.HasOne("Mayor.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.Issue", b =>
@@ -777,8 +802,20 @@ namespace Mayor.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Mayor.Data.Models.Picture", "TitlePicture")
-                        .WithMany("Issues")
-                        .HasForeignKey("TitlePictureId");
+                        .WithOne("Issue")
+                        .HasForeignKey("Mayor.Data.Models.Issue", "TitlePictureId");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("Solver");
+
+                    b.Navigation("Status");
+
+                    b.Navigation("TitlePicture");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueAttachment", b =>
@@ -794,6 +831,10 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("IssueId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueRequest", b =>
@@ -809,6 +850,10 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("RequesterId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("Requester");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueRequestAttachment", b =>
@@ -824,6 +869,10 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("IssueRequestId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("IssueRequest");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueReview", b =>
@@ -839,6 +888,10 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("IssueId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Citizen");
+
+                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueTag", b =>
@@ -854,6 +907,21 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Picture", b =>
+                {
+                    b.HasOne("Mayor.Data.Models.ApplicationUser", "AddedByUser")
+                        .WithMany()
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AddedByUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -905,6 +973,79 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Address", b =>
+                {
+                    b.Navigation("Issues");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Claims");
+
+                    b.Navigation("Logins");
+
+                    b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Attachment", b =>
+                {
+                    b.Navigation("IssueAttachments");
+
+                    b.Navigation("IssueRequestAttachments");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Category", b =>
+                {
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Citizen", b =>
+                {
+                    b.Navigation("IssueReviews");
+
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.City", b =>
+                {
+                    b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Institution", b =>
+                {
+                    b.Navigation("IssueRequests");
+
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Issue", b =>
+                {
+                    b.Navigation("IssueAttachments");
+
+                    b.Navigation("IssueRequests");
+
+                    b.Navigation("IssueReviews");
+
+                    b.Navigation("IssueTags");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.IssueRequest", b =>
+                {
+                    b.Navigation("IssueRequestAttachments");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Picture", b =>
+                {
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Tag", b =>
+                {
+                    b.Navigation("IssueTags");
                 });
 #pragma warning restore 612, 618
         }
