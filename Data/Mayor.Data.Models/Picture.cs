@@ -1,7 +1,7 @@
 ﻿namespace Mayor.Data.Models
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Mayor.Data.Common.Models;
 
@@ -10,14 +10,17 @@
         public Picture()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Issues = new HashSet<Issue>();
-            this.Users = new HashSet<ApplicationUser>();
         }
 
         public string Extension { get; set; }
 
-        public ICollection<ApplicationUser> Users { get; set; }
+        [Required]
+        public string AddedByUserId { get; set; }
 
-        public ICollection<Issue> Issues { get; set; }
+        public ApplicationUser AddedByUser { get; set; }
+
+        public int IssueId { get; set; }
+
+        public Issue Issue { get; set; }
     }
 }
