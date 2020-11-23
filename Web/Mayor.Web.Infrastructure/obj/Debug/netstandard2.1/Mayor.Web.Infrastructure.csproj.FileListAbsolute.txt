@@ -1,8 +1,0 @@
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\bin\Debug\netstandard2.1\Mayor.Web.Infrastructure.deps.json
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\bin\Debug\netstandard2.1\Mayor.Web.Infrastructure.dll
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\bin\Debug\netstandard2.1\Mayor.Web.Infrastructure.pdb
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\obj\Debug\netstandard2.1\Mayor.Web.Infrastructure.AssemblyInfoInputs.cache
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\obj\Debug\netstandard2.1\Mayor.Web.Infrastructure.AssemblyInfo.cs
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\obj\Debug\netstandard2.1\Mayor.Web.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\obj\Debug\netstandard2.1\Mayor.Web.Infrastructure.dll
-C:\Users\Stoyan\Desktop\MyProj\Web\Mayor.Web.Infrastructure\obj\Debug\netstandard2.1\Mayor.Web.Infrastructure.pdb

@@ -1,9 +1,0 @@
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\bin\Debug\netstandard2.1\Mayor.Data.Common.deps.json
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\bin\Debug\netstandard2.1\Mayor.Data.Common.dll
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\bin\Debug\netstandard2.1\Mayor.Data.Common.pdb
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\obj\Debug\netstandard2.1\Mayor.Data.Common.AssemblyInfoInputs.cache
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\obj\Debug\netstandard2.1\Mayor.Data.Common.AssemblyInfo.cs
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\obj\Debug\netstandard2.1\Mayor.Data.Common.csproj.CoreCompileInputs.cache
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\obj\Debug\netstandard2.1\Mayor.Data.Common.dll
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\obj\Debug\netstandard2.1\Mayor.Data.Common.pdb
-C:\Users\Stoyan\Desktop\MyProj\Data\Mayor.Data.Common\obj\Debug\netstandard2.1\Mayor.Data.Common.csprojAssemblyReference.cache
