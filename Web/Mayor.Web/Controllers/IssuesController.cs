@@ -1,6 +1,7 @@
 ﻿using Mayor.Services.Data.Categories;
 using Mayor.Services.Data.Issues;
 using Mayor.Web.ViewModels.Issue;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,13 +11,16 @@ namespace Mayor.Web.Controllers
     {
         private readonly IIssuesService issuesService;
         private readonly ICategoriesService categoriesService;
+        private readonly IWebHostEnvironment environment;
 
         public IssuesController(
             IIssuesService issuesService,
-            ICategoriesService categoriesService)
+            ICategoriesService categoriesService,
+            IWebHostEnvironment environment)
         {
             this.issuesService = issuesService;
             this.categoriesService = categoriesService;
+            this.environment = environment;
         }
 
         public IActionResult Create()
@@ -35,7 +39,8 @@ namespace Mayor.Web.Controllers
                 return this.View();
             }
 
-            await this.issuesService.CreateAsync(input);
+            var rootPath = $"{this.environment.WebRootPath}/img";
+            await this.issuesService.CreateAsync(input, rootPath);
 
             return this.Redirect("/");
         }

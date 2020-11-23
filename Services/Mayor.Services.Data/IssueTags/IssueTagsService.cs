@@ -25,6 +25,11 @@
 
         public async Task CraeteAsync(int issueId, string tagsString)
         {
+            if (string.IsNullOrWhiteSpace(tagsString))
+            {
+                return;
+            }
+
             var parsedTags = this.stringService
                 .SplitByEmptySpace(tagsString.ToLower());
 

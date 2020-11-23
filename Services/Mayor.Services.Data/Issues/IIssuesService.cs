@@ -6,6 +6,6 @@
 
     public interface IIssuesService
     {
-        Task CreateAsync(CreateIssueInputModel input);
+        Task CreateAsync(CreateIssueInputModel input, string imagesPath);
     }
 }

@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Mayor.Web.ViewModels.Address;
+    using Microsoft.AspNetCore.Http;
 
     public class CreateIssueInputModel
     {
@@ -21,6 +22,8 @@
         public string Tags { get; set; }
 
         public int CategoryId { get; set; }
+
+        public IFormFile TitlePicture { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }

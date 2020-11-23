@@ -13,6 +13,7 @@
             this.IssueRequests = new HashSet<IssueRequest>();
             this.IssueTags = new HashSet<IssueTag>();
             this.IssueAttachments = new HashSet<IssueAttachment>();
+            this.Pictures = new HashSet<Picture>();
         }
 
         [Required]
@@ -34,10 +35,6 @@
 
         public virtual Address Address { get; set; }
 
-        public string TitlePictureId { get; set; }
-
-        public virtual Picture TitlePicture { get; set; }
-
         public int StatusId { get; set; }
 
         public virtual Status Status { get; set; }
@@ -45,6 +42,8 @@
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public ICollection<Picture> Pictures { get; set; }
 
         public ICollection<IssueAttachment> IssueAttachments { get; set; }
 

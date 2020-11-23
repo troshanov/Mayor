@@ -7,6 +7,11 @@
 
         public ICollection<string> SplitByEmptySpace(string text)
         {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return null;
+            }
+
             return text
                 .Split(" ", System.StringSplitOptions.RemoveEmptyEntries);
         }

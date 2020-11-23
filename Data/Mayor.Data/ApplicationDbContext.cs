@@ -86,7 +86,7 @@
             this.IssueRequestAttachmentConfiguration(builder);
             this.IssueReviewConfiguration(builder);
             this.IssueTagConfiguration(builder);
-            this.PictureConfiguration(builder);
+            //this.PictureConfiguration(builder);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 
@@ -172,11 +172,11 @@
                 .HasKey(x => new { x.TagId, x.IssueId });
         }
 
-        private void PictureConfiguration(ModelBuilder builder)
-        {
-            builder.Entity<Picture>()
-                .HasOne(p => p.Issue).WithOne(i => i.TitlePicture)
-                .HasForeignKey<Issue>(i => i.TitlePictureId);
-        }
+        //private void PictureConfiguration(ModelBuilder builder)
+        //{
+        //    builder.Entity<Picture>()
+        //        .HasOne(p => p.Issue).WithOne(i => i.TitlePicture)
+        //        .HasForeignKey<Issue>(i => i.TitlePictureId);
+        //}
     }
 }

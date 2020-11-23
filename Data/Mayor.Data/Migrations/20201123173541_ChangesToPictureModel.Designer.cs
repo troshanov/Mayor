@@ -4,14 +4,16 @@ using Mayor.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mayor.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201123173541_ChangesToPictureModel")]
+    partial class ChangesToPictureModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,10 +193,6 @@ namespace Mayor.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AddedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -208,8 +206,6 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddedByUserId");
 
                     b.HasIndex("IsDeleted");
 
@@ -405,6 +401,9 @@ namespace Mayor.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("TitlePictureId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
@@ -418,6 +417,10 @@ namespace Mayor.Data.Migrations
                     b.HasIndex("SolverId");
 
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("TitlePictureId")
+                        .IsUnique()
+                        .HasFilter("[TitlePictureId] IS NOT NULL");
 
                     b.ToTable("Issues");
                 });
@@ -545,7 +548,6 @@ namespace Mayor.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AddedByUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -571,8 +573,6 @@ namespace Mayor.Data.Migrations
                     b.HasIndex("AddedByUserId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("IssueId");
 
                     b.ToTable("Pictures");
                 });
@@ -737,17 +737,6 @@ namespace Mayor.Data.Migrations
                         .HasForeignKey("AddressId");
                 });
 
-            modelBuilder.Entity("Mayor.Data.Models.Attachment", b =>
-                {
-                    b.HasOne("Mayor.Data.Models.ApplicationUser", "AddedByUser")
-                        .WithMany()
-                        .HasForeignKey("AddedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("AddedByUser");
-                });
-
             modelBuilder.Entity("Mayor.Data.Models.Citizen", b =>
                 {
                     b.HasOne("Mayor.Data.Models.ApplicationUser", "User")
@@ -796,6 +785,10 @@ namespace Mayor.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Mayor.Data.Models.Picture", "TitlePicture")
+                        .WithOne("Issue")
+                        .HasForeignKey("Mayor.Data.Models.Issue", "TitlePictureId");
+
                     b.Navigation("Address");
 
                     b.Navigation("Category");
@@ -805,6 +798,8 @@ namespace Mayor.Data.Migrations
                     b.Navigation("Solver");
 
                     b.Navigation("Status");
+
+                    b.Navigation("TitlePicture");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueAttachment", b =>
@@ -906,19 +901,9 @@ namespace Mayor.Data.Migrations
                 {
                     b.HasOne("Mayor.Data.Models.ApplicationUser", "AddedByUser")
                         .WithMany()
-                        .HasForeignKey("AddedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Mayor.Data.Models.Issue", "Issue")
-                        .WithMany("Pictures")
-                        .HasForeignKey("IssueId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("AddedByUserId");
 
                     b.Navigation("AddedByUser");
-
-                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1028,13 +1013,16 @@ namespace Mayor.Data.Migrations
                     b.Navigation("IssueReviews");
 
                     b.Navigation("IssueTags");
-
-                    b.Navigation("Pictures");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.IssueRequest", b =>
                 {
                     b.Navigation("IssueRequestAttachments");
+                });
+
+            modelBuilder.Entity("Mayor.Data.Models.Picture", b =>
+                {
+                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.Tag", b =>
