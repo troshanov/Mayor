@@ -1,13 +1,14 @@
-﻿using Mayor.Services.Data.Categories;
-using Mayor.Services.Data.Issues;
-using Mayor.Web.ViewModels.Issue;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-
-namespace Mayor.Web.Controllers
+﻿namespace Mayor.Web.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Mayor.Services.Data.Categories;
+    using Mayor.Services.Data.Issues;
+    using Mayor.Web.ViewModels.Issue;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+
     public class IssuesController : Controller
     {
         private readonly IIssuesService issuesService;
