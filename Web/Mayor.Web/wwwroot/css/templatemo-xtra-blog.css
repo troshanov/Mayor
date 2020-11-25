@@ -460,6 +460,7 @@ a:hover figcaption { color: #056767; }
     margin-right: 85px;
     padding-left: 64px;
     margin-left: -35px;
+    margin-bottom: 50px;
     /* margin-right:-110px;
     margin-left:-6px; */
 }
@@ -480,6 +481,11 @@ a:hover figcaption { color: #056767; }
     margin-right: -115px;
 }
 
+/*Register Citizen / Institution form*/
+
+#f1, #f2{
+    display:none;
+}
 
 /* Create new issue formm */
 

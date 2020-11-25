@@ -24,6 +24,9 @@
         public int CategoryId { get; set; }
 
         [Required]
+        public string Test { get; set; }
+
+        [Required]
         public IFormFile TitlePicture { get; set; }
 
         public ICollection<IFormFile> Attachments { get; set; }

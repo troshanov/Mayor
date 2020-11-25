@@ -16,7 +16,7 @@
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public decimal Rating { get; set; }
+        public decimal? Rating { get; set; }
 
         public bool IsGovernment { get; set; }
 

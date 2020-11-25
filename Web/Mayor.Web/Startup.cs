@@ -12,6 +12,8 @@
     using Mayor.Services.Data.Addresses;
     using Mayor.Services.Data.Categories;
     using Mayor.Services.Data.Cities;
+    using Mayor.Services.Data.Citizens;
+    using Mayor.Services.Data.Institutions;
     using Mayor.Services.Data.Issues;
     using Mayor.Services.Data.IssueTags;
     using Mayor.Services.Data.Pictures;
@@ -79,6 +81,8 @@
             services.AddTransient<ITagsService, TagsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPicturesService, PicturesService>();
+            services.AddTransient<ICitizensService, CitizensService>();
+            services.AddTransient<IInstitutionsService, InstitutionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

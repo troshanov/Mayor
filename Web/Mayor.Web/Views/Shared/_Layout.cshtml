@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayor</title>    
-	<link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
-	@*<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">*@ <!-- https://fonts.google.com/ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayor</title>
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    @*<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">*@ <!-- https://fonts.google.com/ -->
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/templatemo-xtra-blog.css" rel="stylesheet">
 </head>
@@ -127,7 +127,7 @@
                 <main class="tm-main">
                     <div class="cat-wrapper">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <ul class="cat-list">
 
                                     <a href="https://google.com" class="">
@@ -152,7 +152,7 @@
 
                                 </ul>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <ul class="cat-list">
 
                                     <a href="https://google.com" class="">
@@ -177,7 +177,7 @@
 
                                 </ul>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <ul class="cat-list">
 
                                     <a href="https://google.com" class="">
@@ -210,13 +210,13 @@
         </div>
     </div>
 
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/templatemo-script.js" asp-append-version="true"></script>
+
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <script src="~/js/templatemo-script.js" asp-append-version="true"></script>
+    <script src="~/js/func.js"></script>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

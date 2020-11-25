@@ -1,0 +1,222 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@*<h1>@ViewData["Title"]</h1>*@
+
+<div class="row">
+    <div class="col-12">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" id="f0">
+            <div class="row">
+                <div class="col-lg-5 form-group">
+                    <h4>Create a new account</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-type-radios">User Type</label>
+                        <div class="form-control" id="user-type-radios">
+                            <div class="form-row">
+                                <div class="col-6">
+                                    @Html.RadioButtonFor(model => model.Input.IsCitizen, "true", new { id = "citizen", onclick = "func(1)" })
+                                    @Html.Label("citizen", "Citizen")
+                                    @*<input asp-for="Input.UserType" type="radio" id="citizen" name="user-type" value="citizen" onclick="func(1)">
+                                    <label for="citizen">Citizen</label>*@
+                                </div>
+                                <div class="col-6">
+                                    @Html.RadioButtonFor(model => model.Input.IsCitizen, "false", new { id = "institution", onclick = "func(2)" })
+                                    @Html.Label("institution", "Institution")
+                                    @*<input asp-for="Input.UserType" type="radio" id="institution" name="user-type" value="institution" onclick="func(2)">
+                                    <label for="institution">Institution</label>*@
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Input.IsCitizen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-1 form-group" id="f1">
+                    <h4>Citizen</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label asp-for="Input.FirstName"></label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.LastName"></label>
+                        <input asp-for="Input.LastName" class="form-control" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Birthdate">Birthdate</label>
+                        <input asp-for="Input.Birthdate" class="form-control" type="date">
+                        <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender-type-radios">Sex</label>
+                        <div class="form-control" id="gender-type-radios">
+                            <div class="form-row">
+                                <div class="col-6">
+                                    @Html.RadioButtonFor(model => model.Input.Sex, "false", new { id = "male" })
+                                    @Html.Label("male", "Male")
+                                </div>
+                                <div class="col-6">
+                                    @Html.RadioButtonFor(model => model.Input.Sex, "true", new { id = "female" })
+                                    @Html.Label("female", "Female")
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Input.Sex" class="text-danger"></span>
+                    </div>
+                </div>
+                <div id="f2" class="col-lg-5 offset-1 form-group">
+                    <h4>Institution</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label asp-for="Input.Name">Name</label>
+                        <input asp-for="Input.Name" class="form-control"/>
+                        <span asp-validation-for="Input.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Website">Website</label>
+                        <input asp-for="Input.Website" class="form-control"/>
+                        <span asp-validation-for="Input.Website" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="institution-type-radios">Institution Type</label>
+                        <div class="form-control" id="institution-type-radios">
+                            <div class="form-row">
+                                <div class="col-6">
+                                    @Html.RadioButtonFor(model => model.Input.IsGovernment, "true", new { id = "gov" })
+                                    @Html.Label("gov", "Government")
+                                </div>
+                                <div class="col-6">
+                                    @Html.RadioButtonFor(model => model.Input.IsGovernment, "false", new { id = "ngo" })
+                                    @Html.Label("ngo", "NGO")
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Input.IsGovernment" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>  
+            <button type="button" class="btn btn-success" onclick="submitForms()">Test</button>
+        </form>        
+    </div>
+
+
+    @*<div class="col-md-4 offset-2">
+        <form method="post" id="f1">
+            <h4>Citizen</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Birthdate">Birthdate</label>
+                <input asp-for="Input.Birthdate" class="form-control" type="date">
+            </div>
+            <div class="form-group">
+                <label for="gender-type-radios">Sex</label>
+                <div class="form-control" id="gender-type-radios">
+                    <div class="form-row">
+                        <div class="col-6">
+                            @Html.RadioButtonFor(model => model.Input.Sex, "false", new { id = "male" })
+                            @Html.Label("male", "Male")
+                        </div>
+                        <div class="col-6">
+                            @Html.RadioButtonFor(model => model.Input.Sex, "true", new { id = "female" })
+                            @Html.Label("female", "Female")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <form method="post" id="f2">
+            <h4>Institution</h4>
+            <hr />
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" id="name" />
+            </div>
+            <div class="form-group">
+                <label for="website">Website</label>
+                <input class="form-control" type="text" id="website" />
+            </div>
+            <div class="form-group">
+                <label for="institution-type-radios">Institution Type</label>
+                <div class="form-control" id="institution-type-radios">
+                    <div class="form-row">
+                        <div class="col-6">
+                            @Html.RadioButtonFor(model => model.Input.IsGovernment, "true", new { id = "gov" })
+                            @Html.Label("gov", "Government")
+                        </div>
+                        <div class="col-6">
+                            @Html.RadioButtonFor(model => model.Input.IsGovernment, "false", new { id = "ngo" })
+                            @Html.Label("ngo", "NGO")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>*@
+
+    @*<div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to register.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>*@
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
