@@ -6,6 +6,7 @@
     using Mayor.Services.Data.Categories;
     using Mayor.Services.Data.Issues;
     using Mayor.Web.ViewModels.Issue;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@
             this.environment = environment;
         }
 
+        [Authorize(Roles = "Citizen, Administrator")]
         public IActionResult Create()
         {
             var viewModel = new CreateIssueInputModel();
@@ -33,6 +35,8 @@
         }
 
         [HttpPost]
+
+        [Authorize(Roles = "Citizen, Administrator")]
         public async Task<IActionResult> Create(CreateIssueInputModel input)
         {
             if (!this.ModelState.IsValid)

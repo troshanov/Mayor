@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -74,10 +73,12 @@ namespace Mayor.Web.Areas.Identity.Pages.Account
                     if (this.Input.IsCitizen)
                     {
                         await this.citizensService.CreateAsync(this.Input, user.Id);
+                        await this._userManager.AddToRoleAsync(user, "Citizen");
                     }
                     else
                     {
                         await this.institutionsService.CreateAsync(this.Input, user.Id);
+                        await this._userManager.AddToRoleAsync(user, "Institution");
                     }
 
                     var code = await this._userManager.GenerateEmailConfirmationTokenAsync(user);
