@@ -27,18 +27,47 @@
                 throw new Exception($"Format should be .jpg or .png!");
             }
 
-            // TODO: Refacture hardcoded variable userId
-            userId = "a8be01d1-f291-4fa3-a697-2dbc30dbc8a6";
             var picture = new Picture
             {
                 AddedByUserId = userId,
                 Extension = imgExtension,
             };
 
-            Directory.CreateDirectory($"{rootPath}/img/issues/");
-            var physicalPath = $"{rootPath}/img/issues/{picture.Id}{picture.Extension}";
+            Directory.CreateDirectory($"{rootPath}/img/");
+            var physicalPath = $"{rootPath}/img/{picture.Id}{picture.Extension}";
             using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
             await picFile.CopyToAsync(fileStream);
+            return picture;
+        }
+
+        public async Task<bool> DeleteOldProfilePicAsync(string userId)
+        {
+            var picture = this.picRepo.All()
+                .FirstOrDefault(p => p.AddedByUserId == userId && p.IssueId == null);
+            if (picture == null)
+            {
+                return false;
+            }
+
+            this.picRepo.Delete(picture);
+            await this.picRepo.SaveChangesAsync();
+            return true;
+        }
+
+        public Picture GetProfilePicByUserId(string userId)
+        {
+            var picture = this.picRepo.All()
+                .FirstOrDefault(p => p.AddedByUserId == userId && p.IssueId == null);
+
+            if (picture == null)
+            {
+                return new Picture
+                {
+                    Id = "Anon",
+                    Extension = ".png",
+                };
+            }
+
             return picture;
         }
     }

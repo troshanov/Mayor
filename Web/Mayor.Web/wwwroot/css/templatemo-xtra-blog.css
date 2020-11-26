@@ -17,6 +17,12 @@ body {
     overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6, p, label{
+    font-family:cursive;
+    color:black;
+}
+
+
 hr {
     border-top-color: #CCC;
     margin-top: 10px;
@@ -481,17 +487,37 @@ a:hover figcaption { color: #056767; }
     margin-right: -115px;
 }
 
-/*Register Citizen / Institution form*/
+/*Profile Manager*/
 
-#f1, #f2{
-    display:none;
+#profile-img {
+    height: 300px;
+    width: 300px;
+}
+
+/*Register Citizen / Institution form*/
+#f1, #f2 {
+    display: none;
+}
+
+input, textarea{
+    font-family:cursive;
 }
 
 /* Create new issue formm */
 
-.issue-form-lbl{
+hr {
+    border-top-color: #0CC;
+}
+
+h3 {
+    font-weight: bold;
     font-family: cursive;
     color: tomato;
+}
+
+.issue-form-lbl{
+    font-family: cursive;
+    color:black;
 }
 
 .form-control{
@@ -503,13 +529,14 @@ a:hover figcaption { color: #056767; }
     display: none;
   }
 
-.form-wrapper{
+.form-wrapper {
     margin-right: 85px;
     padding-left: 126px;
     margin-top: 30px;
     padding-bottom: 50px;
     background-image: url("../img/background.jpg");
     background-attachment: fixed;
+    border-radius: 15px 50px 30px 50px;
 }
 /* @media (max-width: 1540px) {
     .tm-header { width: 320px; }

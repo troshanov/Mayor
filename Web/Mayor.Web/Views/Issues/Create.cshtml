@@ -5,8 +5,8 @@
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<div class="form-wrapper border border-dark rounded-pill">
-    <h2 class="offset-3" style="font-family: cursive; font-size: 2rem; margin-top: 20px; color: tomato;">Create a new issue</h2>
+<div class="form-wrapper @*border border-dark rounded-pill*@">
+    <h2 class="offset-3" style=" font-size: 2rem; color: tomato; padding-top:30px;">Create a new issue</h2>
     <form method="POST" style="margin-top: 30px;" enctype="multipart/form-data">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-row">

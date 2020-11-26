@@ -89,6 +89,11 @@
                         yield return new ValidationResult($"Birthdate's year should be between 1900 and {DateTime.UtcNow.Year}.", new[] { nameof(this.Birthdate) });
                     }
                 }
+
+                if (!this.Sex.HasValue)
+                {
+                    yield return new ValidationResult("Sex field is required.", new[] { nameof(this.Sex) });
+                }
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,14 +8,19 @@ namespace Mayor.Web.ViewModels.User
     public class AppUserProfileInputModel : IValidatableObject
     {
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        public IFormFile ProfilePicture { get; set; }
 
         public bool IsCitizen { get; set; }
 
         // Citizen properties
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         public DateTime? Birthdate { get; set; }
@@ -26,6 +32,7 @@ namespace Mayor.Web.ViewModels.User
 
         public string Website { get; set; }
 
+        [Display(Name = "Institution Type")]
         public bool IsGovernment { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -73,6 +80,11 @@ namespace Mayor.Web.ViewModels.User
                     {
                         yield return new ValidationResult($"Birthdate's year should be between 1900 and {DateTime.UtcNow.Year}.", new[] { nameof(this.Birthdate) });
                     }
+                }
+
+                if (!this.Sex.HasValue)
+                {
+                    yield return new ValidationResult("Sex field is required.", new[] { nameof(this.Sex) });
                 }
             }
             else

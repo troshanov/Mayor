@@ -1,41 +1,58 @@
-﻿using Mayor.Data.Models;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Mayor.Services.Data.Citizens;
-using Mayor.Data.Common.Repositories;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Mayor.Services.Data.Institutions;
-using Mayor.Web.ViewModels.User;
-
-namespace Mayor.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace Mayor.Web.Areas.Identity.Pages.Account.Manage
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Mayor.Data.Common.Repositories;
+    using Mayor.Data.Models;
+    using Mayor.Services.Data.Citizens;
+    using Mayor.Services.Data.Institutions;
+    using Mayor.Services.Data.Pictures;
+    using Mayor.Web.ViewModels.User;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IWebHostEnvironment environment;
         private readonly ICitizensService citizensService;
         private readonly IInstitutionsService institutionsService;
+        private readonly IPicturesService picService;
+        private readonly IDeletableEntityRepository<Picture> picRepo;
         private readonly IDeletableEntityRepository<Citizen> citizenRepo;
         private readonly IDeletableEntityRepository<Institution> institutionRepo;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            IWebHostEnvironment environment,
             ICitizensService citizensService,
             IInstitutionsService institutionsService,
+            IPicturesService picService,
+            IDeletableEntityRepository<Picture> picRepo,
             IDeletableEntityRepository<Citizen> citizenRepo,
             IDeletableEntityRepository<Institution> institutionRepo)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
+            this.environment = environment;
             this.citizensService = citizensService;
             this.institutionsService = institutionsService;
+            this.picService = picService;
+            this.picRepo = picRepo;
             this.citizenRepo = citizenRepo;
             this.institutionRepo = institutionRepo;
         }
 
         public string Username { get; set; }
+
+        public string PicId { get; set; }
+
+        public string PicExtension { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -85,42 +102,34 @@ namespace Mayor.Web.Areas.Identity.Pages.Account.Manage
         {
             var userName = await this._userManager.GetUserNameAsync(user);
             var phoneNumber = await this._userManager.GetPhoneNumberAsync(user);
+            var profilePic = this.picService.GetProfilePicByUserId(user.Id);
 
             this.Username = userName;
+            this.PicId = profilePic.Id;
+            this.PicExtension = profilePic.Extension;
+
+            this.Input = new AppUserProfileInputModel
+            {
+                PhoneNumber = phoneNumber,
+            };
 
             if (this.User.IsInRole("Citizen"))
             {
                 var citizen = this.citizensService.GetByUserId(user.Id);
 
-                this.Input = new AppUserProfileInputModel
-                {
-                    PhoneNumber = phoneNumber,
-                    FirstName = citizen.FirstName,
-                    LastName = citizen.LastName,
-                    Birthdate = citizen.Birthdate,
-                    Sex = citizen.Sex,
-                    IsCitizen = true,
-                };
+                this.Input.FirstName = citizen.FirstName;
+                this.Input.LastName = citizen.LastName;
+                this.Input.Birthdate = citizen.Birthdate;
+                this.Input.Sex = citizen.Sex;
+                this.Input.IsCitizen = true;
             }
             else if (this.User.IsInRole("Institution"))
             {
                 var institution = this.institutionsService.GetByUserId(user.Id);
 
-                this.Input = new AppUserProfileInputModel
-                {
-                    PhoneNumber = phoneNumber,
-                    Name = institution.Name,
-                    Website = institution.WebsiteUrl,
-                    IsGovernment = institution.IsGovernment,
-                    IsCitizen = false,
-                };
-            }
-            else
-            {
-                this.Input = new AppUserProfileInputModel
-                {
-                    PhoneNumber = phoneNumber,
-                };
+                this.Input.Name = institution.Name;
+                this.Input.Website = institution.WebsiteUrl;
+                this.Input.IsGovernment = institution.IsGovernment;
             }
         }
 
@@ -161,6 +170,29 @@ namespace Mayor.Web.Areas.Identity.Pages.Account.Manage
                 {
                     this.StatusMessage = "Unexpected error when trying to set phone number.";
                     return this.RedirectToPage();
+                }
+            }
+
+            var profilePic = this.picService.GetProfilePicByUserId(user.Id);
+            this.PicId = profilePic.Id;
+            this.PicExtension = profilePic.Extension;
+
+            if (this.Input.ProfilePicture != null)
+            {
+                try
+                {
+                    var newProfilePic = await this.picService.CreateFileAsync(user.Id, $"{this.environment.WebRootPath}", this.Input.ProfilePicture);
+                    await this.picService.DeleteOldProfilePicAsync(user.Id);
+                    await this.picRepo.AddAsync(newProfilePic);
+                    await this.picRepo.SaveChangesAsync();
+
+                    this.PicId = newProfilePic.Id;
+                    this.PicExtension = newProfilePic.Extension;
+                }
+                catch (Exception ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    return this.Page();
                 }
             }
 

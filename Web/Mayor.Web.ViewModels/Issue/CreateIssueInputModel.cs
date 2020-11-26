@@ -9,12 +9,12 @@
     public class CreateIssueInputModel
     {
         [Required]
-        [MinLength(5)]
+        [MinLength(5, ErrorMessage = "Title must containt at least 5 characters.")]
         [MaxLength(50)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(20)]
+        [MinLength(20, ErrorMessage = "Description must containt at least 20 characters.")]
         public string Description { get; set; }
 
         public CreateAddressInputModel Address { get; set; }
