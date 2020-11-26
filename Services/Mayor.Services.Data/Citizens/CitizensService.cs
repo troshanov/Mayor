@@ -1,5 +1,6 @@
 ﻿namespace Mayor.Services.Data.Citizens
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Mayor.Data.Common.Repositories;
@@ -29,6 +30,12 @@
 
             await this.citizenRepo.AddAsync(citizen);
             await this.citizenRepo.SaveChangesAsync();
+        }
+
+        public Citizen GetByUserId(string userId)
+        {
+            return this.citizenRepo.All()
+                .FirstOrDefault(c => c.UserId == userId);
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿@using Mayor.Web.Areas.Identity.Pages.Account.Manage
+@model IndexModel
+@{
+}
+
+<div class="form-group">
+    <label asp-for="Input.Name"></label>
+    <input asp-for="Input.Name" class="form-control" />
+    <span asp-validation-for="Input.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Input.Website"></label>
+    <input asp-for="Input.Website" class="form-control" />
+    <span asp-validation-for="Input.Website" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label for="gender-type-radios">Institution Type</label>
+    <div class="form-control" id="gender-type-radios">
+        <div class="form-row">
+            <div class="col-6">
+                @Html.RadioButtonFor(model => model.Input.IsGovernment, "true", new { id = "gov", disabled = "disabled" })
+                @Html.Label("gov", "Government")
+            </div>
+            <div class="col-6">
+                @Html.RadioButtonFor(model => model.Input.IsGovernment, "false", new { id = "ngo", disabled = "disabled" })
+                @Html.Label("ngo", "NGO")
+            </div>
+        </div>
+    </div>
+    <span asp-validation-for="Input.IsGovernment" class="text-danger"></span>
+</div>

@@ -1,50 +1,35 @@
-﻿namespace Mayor.Web.ViewModels.User
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Mayor.Web.ViewModels.User
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public class AppUserInputModel : IValidatableObject
+    public class AppUserProfileInputModel : IValidatableObject
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Phone]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-
-        [Display(Name = "User Type")]
         public bool IsCitizen { get; set; }
 
-        [Display(Name = "First Name")]
+        // Citizen properties
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         public DateTime? Birthdate { get; set; }
 
         public bool? Sex { get; set; }
 
+        // Institution properties
         public string Name { get; set; }
 
         public string Website { get; set; }
 
-        [Display(Name = "Institution Type")]
-        public bool? IsGovernment { get; set; }
+        public bool IsGovernment { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Validate Citizen properties:
             if (this.IsCitizen == true)
             {
                 if (!new RequiredAttribute().IsValid(this.FirstName))

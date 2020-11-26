@@ -1,5 +1,6 @@
 ﻿namespace Mayor.Services.Data.Institutions
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Mayor.Data.Common.Repositories;
@@ -28,6 +29,12 @@
 
             await this.institutionRepo.AddAsync(institution);
             await this.institutionRepo.SaveChangesAsync();
+        }
+
+        public Institution GetByUserId(string userId)
+        {
+            return this.institutionRepo.All()
+                .FirstOrDefault(i => i.UserId == userId);
         }
     }
 }

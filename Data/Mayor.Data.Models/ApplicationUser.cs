@@ -16,6 +16,7 @@ namespace Mayor.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Pictures = new HashSet<Picture>();
         }
 
         // Audit info
@@ -33,5 +34,7 @@ namespace Mayor.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Picture> Pictures { get; set; }
     }
 }
