@@ -54,6 +54,8 @@
 
         public DbSet<Tag> Tags { get; set; }
 
+        public DbSet<Vote> Votes { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -86,7 +88,7 @@
             this.IssueRequestAttachmentConfiguration(builder);
             this.IssueReviewConfiguration(builder);
             this.IssueTagConfiguration(builder);
-            //this.PictureConfiguration(builder);
+            this.VoteConfiguration(builder);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 
@@ -146,6 +148,12 @@
                 .HasKey(x => new { x.IssueId, x.AttachmentId });
         }
 
+        private void VoteConfiguration(ModelBuilder builder)
+        {
+            builder.Entity<Vote>()
+                .HasKey(x => new { x.CitizenId, x.IssueId });
+        }
+
         private void IssueRequestAttachmentConfiguration(ModelBuilder builder)
         {
             builder.Entity<IssueRequestAttachment>()
@@ -171,12 +179,5 @@
             builder.Entity<IssueTag>()
                 .HasKey(x => new { x.TagId, x.IssueId });
         }
-
-        //private void PictureConfiguration(ModelBuilder builder)
-        //{
-        //    builder.Entity<Picture>()
-        //        .HasOne(p => p.Issue).WithOne(i => i.TitlePicture)
-        //        .HasForeignKey<Issue>(i => i.TitlePictureId);
-        //}
     }
 }

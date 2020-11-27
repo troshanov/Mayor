@@ -14,6 +14,7 @@
             this.IssueTags = new HashSet<IssueTag>();
             this.IssueAttachments = new HashSet<IssueAttachment>();
             this.Pictures = new HashSet<Picture>();
+            this.Votes = new HashSet<Vote>();
         }
 
         [Required]
@@ -52,5 +53,7 @@
         public ICollection<IssueRequest> IssueRequests { get; set; }
 
         public ICollection<IssueReview> IssueReviews { get; set; }
+
+        public ICollection<Vote> Votes { get; set; }
     }
 }

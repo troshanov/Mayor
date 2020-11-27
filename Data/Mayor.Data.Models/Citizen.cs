@@ -12,6 +12,7 @@
         {
             this.Issues = new HashSet<Issue>();
             this.IssueReviews = new HashSet<IssueReview>();
+            this.Votes = new HashSet<Vote>();
         }
 
         [Required]
@@ -33,5 +34,7 @@
         public ICollection<Issue> Issues { get; set; }
 
         public ICollection<IssueReview> IssueReviews { get; set; }
+
+        public ICollection<Vote> Votes { get; set; }
     }
 }

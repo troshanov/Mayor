@@ -22,13 +22,12 @@ h1, h2, h3, h4, h5, h6, p, label{
     color:black;
 }
 
-
 hr {
     border-top-color: #CCC;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.form-control::-webkit-input-placeholder { color: #999; }
+.rm-control::-webkit-input-placeholder { color: #999; }
 .form-control:-ms-input-placeholder { color: #999; }
 .form-control::placeholder { color: #999; }
 
@@ -452,10 +451,9 @@ a:hover figcaption { color: #056767; }
     border-radius: 15px 50px 30px 50px;
 }
 
-.cat-image{
-    margin-bottom:20px;
+.cat-image {
     margin-top: 20px;
-    
+    margin-bottom: 20px;
 }
 
 .cat-wrapper{
@@ -463,9 +461,7 @@ a:hover figcaption { color: #056767; }
     border-radius: 15px 50px 30px 50px;
     background-image:url("../img/1.jpg");
     background-position: initial;
-    margin-right: 85px;
-    padding-left: 64px;
-    margin-left: -35px;
+    /*padding-left: 64px;*/
     margin-bottom: 50px;
     /* margin-right:-110px;
     margin-left:-6px; */

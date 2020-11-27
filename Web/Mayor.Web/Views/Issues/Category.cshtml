@@ -1,0 +1,22 @@
+﻿@using Mayor.Web.ViewModels.Issue
+@model IssueListViewModel
+@{
+    this.ViewData["Title"] = this.ViewData["Category"];
+}
+
+<h1 class="col-12" style="color:tomato;">@this.ViewData["Title"]</h1>
+<hr style="margin-bottom:20px;" />
+<div class="row">
+    @foreach (var issue in Model.Issues)
+    {
+        <div class="media col-md-12" style="margin-bottom:10px;">
+            <img class="mr-3" width="150" src="@issue.ImageUrl" alt="Generic placeholder image">
+            <div class="media-body">
+                <h4 class="mt-0">@issue.Title</h4>
+                <p class="text-muted">@string.Join("", issue.Description.Take(200).ToList())</p>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<partial name="_CategoryPagingPartial" model="@Model" />

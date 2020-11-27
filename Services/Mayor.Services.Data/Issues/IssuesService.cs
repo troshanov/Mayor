@@ -1,6 +1,7 @@
 ﻿namespace Mayor.Services.Data.Issues
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -10,6 +11,7 @@
     using Mayor.Services.Data.Addresses;
     using Mayor.Services.Data.IssueTags;
     using Mayor.Services.Data.Pictures;
+    using Mayor.Services.Mapping;
     using Mayor.Web.ViewModels.Issue;
 
     public class IssuesService : IIssuesService
@@ -92,6 +94,38 @@
             await this.issuesRepo.AddAsync(issue);
             await this.issuesRepo.SaveChangesAsync();
             await this.issueTagsService.CraeteAsync(issue.Id, input.Tags);
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        {
+            // TODO: Order items 
+            return this.issuesRepo.AllAsNoTracking()
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public IEnumerable<T> GetAllByCategoryName<T>(int page, string category, int itemsPerPage = 12)
+        {
+            return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.Category.Name == category)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public int GetCount()
+        {
+            return this.issuesRepo.AllAsNoTracking().Count();
+        }
+
+        public int GetCountByCateogry(string category)
+        {
+            return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.Category.Name == category)
+                .Count();
         }
     }
 }

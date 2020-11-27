@@ -12,6 +12,7 @@
 
     public class IssuesController : Controller
     {
+        private const int ItemsPerPage = 3;
         private readonly IIssuesService issuesService;
         private readonly ICategoriesService categoriesService;
         private readonly IWebHostEnvironment environment;
@@ -59,6 +60,32 @@
             }
 
             return this.Redirect("/");
+        }
+
+        public IActionResult All(int id = 1)
+        {
+            var viewModel = new IssueListViewModel
+            {
+                PageNumber = id,
+                ItemsPerPage = ItemsPerPage,
+                IssuesCount = this.issuesService.GetCount(),
+                Issues = this.issuesService.GetAll<IssueInListViewModel>(id, ItemsPerPage),
+            };
+            return this.View(viewModel);
+        }
+
+        [Route("Issues/Category/{name}/{id?}")]
+        public IActionResult Category(string name, int id = 1)
+        {
+            this.ViewData["Category"] = name;
+            var viewModel = new IssueListViewModel
+            {
+                PageNumber = id,
+                ItemsPerPage = ItemsPerPage,
+                IssuesCount = this.issuesService.GetCountByCateogry(name),
+                Issues = this.issuesService.GetAllByCategoryName<IssueInListViewModel>(id, name, ItemsPerPage),
+            };
+            return this.View(viewModel);
         }
     }
 }
