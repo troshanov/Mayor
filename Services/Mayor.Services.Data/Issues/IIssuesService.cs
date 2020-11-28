@@ -15,6 +15,8 @@
 
         int GetCount();
 
+        T GetById<T>(int id);
+
         int GetCountByCateogry(string category);
     }
 }

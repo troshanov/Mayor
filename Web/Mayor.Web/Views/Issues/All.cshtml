@@ -4,23 +4,38 @@
     this.ViewData["Title"] = "All Issues";
 }
 
-<h1 class="col-12" style="color:tomato;">@this.ViewData["Title"]</h1>
-<hr style="margin-bottom:20px;" />
+<h1 class="col-12" style="color:tomato; margin-bottom:20px;">@this.ViewData["Title"]</h1>
+@*<hr style="margin-bottom:20px;" />*@
 <div class="row">
-    @foreach (var issue in Model.Issues)
+    @for (int i = 0; i < this.Model.Issues.Count(); i++)
     {
-        <div class="media col-md-12" style="margin-bottom:10px;">
-            <img class="mr-3" width="150" src="@issue.ImageUrl" alt="Generic placeholder image">
-            <div class="media-body">
-                <h4 class="mt-0">@issue.Title</h4>
-                <p class="text-muted">@string.Join("", issue.Description.Take(200).ToList())</p>
+        var issue = this.Model.Issues.ToArray()[i];
+
+        <div class="card" style="width: 18rem; margin-bottom:10px; margin-left: 10px; border: 1px solid darkturquoise; border-radius: 9px 6px 30px 50px;">
+            <img class="card-img-top" width="100" height="200" src="@issue.ImageUrl" alt="Issue image">
+            <div class="card-body">
+                <h5 class="card-title">@issue.Title</h5>
+                <p class="card-text text-muted">@string.Join("", issue.Description.Take(50).ToList())...</p>
+            </div>
+            <ul class="list-group list-group-flush" style=" font-family:cursive;">
+                <li class="list-group-item">@issue.CategoryName</li>
+                <li class="list-group-item">@issue.AddressCityName</li>
+                <li class="list-group-item">@issue.Address</li>
+            </ul>
+            <div class="card-body row">
+                @*Well aware I should not be using onclick attribute, the usage here is exceptional!*@
+                <div class="col-md-6">
+                    <a href="#" class="vote-btn card-link" onclick="vote(@issue.Id,@("voteBadge" + i)); return false;">Vote</a>
+                    <span class="badge badge-primary badge-pill" id="@("voteBadge" + i)">@issue.VotesCount</span>
+                </div>
+                <div class="col-md-4 offset-2">
+                    <a asp-action="Single" asp-route-id="@issue.Id" class="card-link">Open</a>
+                </div>
             </div>
         </div>
     }
 </div>
-<hr />
-
-<nav aria-label="...">
+<nav aria-label="..." style="margin-top:15px;">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage) {<text>disabled</text>}">
             <a class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">Previous</a>
@@ -50,3 +65,25 @@
         </li>
     </ul>
 </nav>
+<hr style="margin-top:10px; margin-bottom:20px;" />
+
+
+@*<div class="card" style="width: 18rem; margin-bottom:10px; margin-left: 10px; border: 1px solid darkturquoise; border-radius: 9px 6px 30px 50px;">
+        <img class="card-img-top" width="100" height="200" src="@issue.ImageUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@issue.Title</h5>
+            <p class="card-text">@string.Join("", issue.Description.Take(100).ToList()) ...</p>
+            <a href="#" class="btn btn-primary justify-content-center">Go somewhere</a>
+        </div>
+    </div>*@
+
+
+@*<div class="media col-md-12" style="margin-bottom:10px;">
+        <img class="mr-3" width="150" src="@issue.ImageUrl" alt="Generic placeholder image">
+        <div class="media-body">
+            <h4 class="mt-0">@issue.Title</h4>
+            <p class="text-muted">@string.Join("", issue.Description.Take(200).ToList())</p>
+        </div>
+    </div>*@
+
+

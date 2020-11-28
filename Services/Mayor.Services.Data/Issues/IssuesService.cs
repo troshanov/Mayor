@@ -100,6 +100,7 @@
         {
             // TODO: Order items 
             return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.Pictures.Any())
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -114,6 +115,14 @@
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
+        }
+
+        public T GetById<T>(int id)
+        {
+            return this.issuesRepo.All()
+                .Where(i => i.Id == id)
+                .To<T>()
+                .FirstOrDefault();
         }
 
         public int GetCount()

@@ -18,6 +18,7 @@
     using Mayor.Services.Data.IssueTags;
     using Mayor.Services.Data.Pictures;
     using Mayor.Services.Data.Tags;
+    using Mayor.Services.Data.Votes;
     using Mayor.Services.Mapping;
     using Mayor.Services.Messaging;
     using Mayor.Web.ViewModels;
@@ -83,6 +84,7 @@
             services.AddTransient<IPicturesService, PicturesService>();
             services.AddTransient<ICitizensService, CitizensService>();
             services.AddTransient<IInstitutionsService, InstitutionsService>();
+            services.AddTransient<IVotesService, VotesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,7 +12,7 @@
 
     public class IssuesController : Controller
     {
-        private const int ItemsPerPage = 3;
+        private const int ItemsPerPage = 12;
         private readonly IIssuesService issuesService;
         private readonly ICategoriesService categoriesService;
         private readonly IWebHostEnvironment environment;
@@ -85,6 +85,13 @@
                 IssuesCount = this.issuesService.GetCountByCateogry(name),
                 Issues = this.issuesService.GetAllByCategoryName<IssueInListViewModel>(id, name, ItemsPerPage),
             };
+            return this.View(viewModel);
+        }
+
+        [Route("Issues/{id}")]
+        public IActionResult Single(int id)
+        {
+            var viewModel = this.issuesService.GetById<SingleIssueViewModel>(id);
             return this.View(viewModel);
         }
     }

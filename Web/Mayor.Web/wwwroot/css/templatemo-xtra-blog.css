@@ -17,6 +17,16 @@ body {
     overflow-x: hidden;
 }
 
+.card-link{
+    font-family: cursive;
+    color:tomato;
+}
+
+.list-group-flush > .list-group-item {
+    border-width: 0 0 1px;
+    border-color: #0CC;
+}
+
 h1, h2, h3, h4, h5, h6, p, label{
     font-family:cursive;
     color:black;
