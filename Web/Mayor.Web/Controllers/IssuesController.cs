@@ -1,6 +1,8 @@
 ﻿namespace Mayor.Web.Controllers
 {
     using System;
+    using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Mayor.Services.Data.Categories;
@@ -50,7 +52,8 @@
 
             try
             {
-                await this.issuesService.CreateAsync(input, rootPath);
+                var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                await this.issuesService.CreateAsync(input, userId, rootPath);
             }
             catch (Exception ex)
             {
@@ -88,10 +91,30 @@
             return this.View(viewModel);
         }
 
-        [Route("Issues/{id}")]
+        [Route("Issues/{id:int}")]
         public IActionResult Single(int id)
         {
             var viewModel = this.issuesService.GetById<SingleIssueViewModel>(id);
+
+            viewModel.SidebarIssues = this.issuesService
+                .GetAllByCategoryName<IssueInSidebarViewModel>(1, viewModel.CategoryName, 5)
+                .OrderByDescending(vm => vm.VotesCount)
+                .ToList();
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult My(int id = 1)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var viewModel = new IssueListViewModel
+            {
+                PageNumber = id,
+                ItemsPerPage = 6,
+                IssuesCount = this.issuesService.GetCountByUserId(userId),
+                Issues = this.issuesService.GetAllByUserId<IssueInListViewModel>(id, userId, 6),
+            };
+
             return this.View(viewModel);
         }
     }

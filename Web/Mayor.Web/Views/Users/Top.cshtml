@@ -1,0 +1,21 @@
+﻿@using Mayor.Web.ViewModels.Institution
+@model TopInstitutionsListViewModel
+@{
+}
+
+<ol class="list-styled">
+    @foreach (var inst in Model.Institutions)
+    {
+        <li class="media oli">
+            <img class="mr-3" height="100" width="150" src="@inst.ImageUrl" alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1">
+                    @inst.Name
+                    <span class="badge badge-warning badge-pill">@inst.Rating.ToString("f2")</span>
+                </h5>
+                @inst.WebsiteUrl
+            </div>
+        </li>
+        <hr />
+    }
+</ol>

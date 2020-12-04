@@ -9,6 +9,7 @@
     using Mayor.Data.Common.Repositories;
     using Mayor.Data.Models;
     using Mayor.Services.Data.Addresses;
+    using Mayor.Services.Data.Citizens;
     using Mayor.Services.Data.IssueTags;
     using Mayor.Services.Data.Pictures;
     using Mayor.Services.Mapping;
@@ -20,6 +21,8 @@
         private readonly IDeletableEntityRepository<Issue> issuesRepo;
         private readonly IRepository<IssueAttachment> issueAttRepo;
         private readonly IDeletableEntityRepository<Attachment> attRepo;
+        private readonly IDeletableEntityRepository<Citizen> citizenRepo;
+        private readonly ICitizensService citizensService;
         private readonly IPicturesService picturesService;
         private readonly IAddressesService addressesService;
         private readonly IIssueTagsService issueTagsService;
@@ -28,6 +31,8 @@
             IDeletableEntityRepository<Issue> issuesRepo,
             IRepository<IssueAttachment> issueAttRepo,
             IDeletableEntityRepository<Attachment> attRepo,
+            IDeletableEntityRepository<Citizen> citizenRepo,
+            ICitizensService citizensService,
             IPicturesService picturesService,
             IAddressesService addressesService,
             IIssueTagsService issueTagsService)
@@ -35,13 +40,16 @@
             this.issuesRepo = issuesRepo;
             this.issueAttRepo = issueAttRepo;
             this.attRepo = attRepo;
+            this.citizenRepo = citizenRepo;
+            this.citizensService = citizensService;
             this.picturesService = picturesService;
             this.addressesService = addressesService;
             this.issueTagsService = issueTagsService;
         }
 
-        public async Task CreateAsync(CreateIssueInputModel input, string rootPath)
+        public async Task CreateAsync(CreateIssueInputModel input, string userId, string rootPath)
         {
+            var citizenId = this.citizensService.GetByUserId(userId).Id;
             var address = await this.addressesService.CreateAsync(input.Address);
             var issue = new Issue
             {
@@ -50,10 +58,8 @@
                 Address = address,
                 CategoryId = input.CategoryId,
                 StatusId = 2,
-                CreatorId = 5,
+                CreatorId = citizenId,
             };
-
-            var userId = "a8be01d1-f291-4fa3-a697-2dbc30dbc8a6";
 
             // Add image to file system
             issue.Pictures.Add(await this.picturesService.CreateFileAsync(userId, rootPath, input.TitlePicture));
@@ -98,7 +104,7 @@
 
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
         {
-            // TODO: Order items 
+            // TODO: Order items
             return this.issuesRepo.AllAsNoTracking()
                 .Where(i => i.Pictures.Any())
                 .Skip((page - 1) * itemsPerPage)
@@ -111,6 +117,22 @@
         {
             return this.issuesRepo.AllAsNoTracking()
                 .Where(i => i.Category.Name == category)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+        }
+
+        public IEnumerable<T> GetAllByUserId<T>(int page, string userId, int itemsPerPage = 12)
+        {
+            // Use CitizensService instead
+            var citizenId = this.citizenRepo.All()
+                .Where(c => c.UserId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefault();
+
+            return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.CreatorId == citizenId)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -134,6 +156,18 @@
         {
             return this.issuesRepo.AllAsNoTracking()
                 .Where(i => i.Category.Name == category)
+                .Count();
+        }
+
+        public int GetCountByUserId(string userId)
+        {
+            var citizenId = this.citizenRepo.AllAsNoTracking()
+                .Where(c => c.UserId == userId)
+                .Select(c => c.Id)
+                .FirstOrDefault();
+
+            return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.CreatorId == citizenId)
                 .Count();
         }
     }

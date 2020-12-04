@@ -1,6 +1,6 @@
 ﻿@using Mayor.Web.ViewModels.Issue
 @model SingleIssueViewModel
-@{ 
+@{
     this.ViewData["Title"] = "Issue";
 }
 
@@ -16,7 +16,16 @@
     <div class="col-lg-8 tm-post-col">
         <div class="tm-post-full">
             <div class="mb-4">
-                <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Title</h2>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Title</h2>
+
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="vote-btn card-link" onclick="vote(@Model.Id,voteBadge); return false;">Vote</a>
+                        <span class="badge badge-primary badge-pill" id="voteBadge">@Model.VotesCount</span>
+                    </div>
+                </div>
                 <p class="text-muted" style="margin-bottom:0px;">@Model.AddressCityName, @Model.Address</p>
                 <p class="tm-mb-40 text-muted">@Model.CreatedOn.ToString("d") posted by @Model.CreatorName</p>
                 <p>
@@ -25,7 +34,6 @@
                 <p>
                     @string.Join(" ", Model.IssueTags)
                 </p>
-                <span class="d-block text-right tm-color-primary">Creative . Design . @Model.VotesCount</span>
             </div>
 
             <!-- Comments -->
@@ -86,35 +94,20 @@
     <aside class="col-lg-4 tm-aside-col">
         <div class="tm-post-sidebar">
             <hr class="mb-3 tm-hr-primary">
-            <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>
-            <ul class="tm-mb-75 pl-5 tm-category-list">
-                <li><a href="#" class="tm-color-primary">Visual Designs</a></li>
-                <li><a href="#" class="tm-color-primary">Travel Events</a></li>
-                <li><a href="#" class="tm-color-primary">Web Development</a></li>
-                <li><a href="#" class="tm-color-primary">Video and Audio</a></li>
-                <li><a href="#" class="tm-color-primary">Etiam auctor ac arcu</a></li>
-                <li><a href="#" class="tm-color-primary">Sed im justo diam</a></li>
-            </ul>
-            <hr class="mb-3 tm-hr-primary">
-            <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>
-            <a href="#" class="d-block tm-mb-40">
-                <figure>
-                    <img src="img/img-02.jpg" alt="Image" class="mb-3 img-fluid">
-                    <figcaption class="tm-color-primary">Duis mollis diam nec ex viverra scelerisque a sit</figcaption>
-                </figure>
-            </a>
-            <a href="#" class="d-block tm-mb-40">
-                <figure>
-                    <img src="img/img-05.jpg" alt="Image" class="mb-3 img-fluid">
-                    <figcaption class="tm-color-primary">Integer quis lectus eget justo ullamcorper ullamcorper</figcaption>
-                </figure>
-            </a>
-            <a href="#" class="d-block tm-mb-40">
-                <figure>
-                    <img src="img/img-06.jpg" alt="Image" class="mb-3 img-fluid">
-                    <figcaption class="tm-color-primary">Nam lobortis nunc sed faucibus commodo</figcaption>
-                </figure>
-            </a>
+            <h2 class="tm-mb-40 tm-post-title tm-color-primary">@Model.CategoryName</h2>
+            @for (int i = 0; i < Model.SidebarIssues.Count(); i++)
+            {
+                var issue = Model.SidebarIssues[i];
+                <a asp-action="Single" asp-route-id="@issue.Id" class="d-block tm-mb-40">
+                    <figure>
+                        <img src="@issue.ImageUrl" width="150" height="100" alt="Issue image" class="mb-3 img-fluid">
+                        <figcaption class="tm-color-primary">@issue.Title</figcaption>
+                        <p class="text-muted">@issue.Description</p>
+                    </figure>
+                </a>
+            }
+            
+            @*<button id="b1" class="btn-info col-md-5 offset-md-7" style="font-size:20px">Next <i class="fa fa-chevron-right"></i></button>*@
         </div>
     </aside>
 </div>

@@ -7,16 +7,20 @@
 
     public interface IIssuesService
     {
-        Task CreateAsync(CreateIssueInputModel input, string imagesPath);
+        Task CreateAsync(CreateIssueInputModel input, string userId, string imagesPath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
 
         IEnumerable<T> GetAllByCategoryName<T>(int page, string category, int itemsPerPage = 12);
+
+        IEnumerable<T> GetAllByUserId<T>(int page, string userId, int itemsPerPage = 12);
 
         int GetCount();
 
         T GetById<T>(int id);
 
         int GetCountByCateogry(string category);
+
+        int GetCountByUserId(string userId);
     }
 }

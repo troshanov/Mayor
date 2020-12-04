@@ -1,10 +1,12 @@
 ﻿namespace Mayor.Services.Data.Institutions
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Mayor.Data.Common.Repositories;
     using Mayor.Data.Models;
+    using Mayor.Services.Mapping;
     using Mayor.Web.ViewModels.User;
 
     public class InstitutionsService : IInstitutionsService
@@ -35,6 +37,15 @@
         {
             return this.institutionRepo.All()
                 .FirstOrDefault(i => i.UserId == userId);
+        }
+
+        public IEnumerable<T> GetTopTenByRating<T>()
+        {
+            return this.institutionRepo.AllAsNoTracking()
+                .OrderByDescending(i => i.Rating)
+                .Take(10)
+                .To<T>()
+                .ToList();
         }
     }
 }

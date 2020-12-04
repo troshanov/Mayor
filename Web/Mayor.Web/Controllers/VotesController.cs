@@ -2,7 +2,6 @@
 using Mayor.Services.Data.Votes;
 using Mayor.Web.ViewModels.Vote;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -23,6 +22,7 @@ namespace Mayor.Web.Controllers
             this.issuesService = issuesService;
         }
 
+        // TODO: Workaround for the AFT.
         [HttpPost]
         [IgnoreAntiforgeryToken]
         public async Task<ActionResult<PostVoteResponseModel>> Post(PostVoteInputModel input)

@@ -32,6 +32,48 @@ h1, h2, h3, h4, h5, h6, p, label{
     color:black;
 }
 
+/*ol.circle {
+    list-style: none;
+    counter-reset: item;
+}
+
+ol.circle > li {
+    counter-increment: item;
+    margin-bottom: 5px;
+}
+
+ol.circle > li:before {
+    margin-right: 10px;
+    content: counter(item);
+    background: #FF8A65;
+    border-radius: 100%;
+    color: white;
+    width: 1.3em;
+    text-align: center;
+    display: inline-block;
+}*/
+
+ol {
+    list-style: none;
+    counter-reset: item;
+}
+
+.oli {
+    counter-increment: item;
+    margin-bottom: 5px;
+}
+
+.oli:before {
+    margin-right: 10px;
+    content: counter(item);
+    background: tomato;
+    border-radius: 100%;
+    color: white;
+    width: 1.2em;
+    text-align: center;
+    display: inline-block;
+}
+
 hr {
     border-top-color: #CCC;
     margin-top: 10px;
