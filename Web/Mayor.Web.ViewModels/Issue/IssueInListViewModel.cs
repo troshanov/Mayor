@@ -17,6 +17,8 @@
 
         public string Address { get; set; }
 
+        public string StatusStatusCode { get; set; }
+
         public string AddressCityName { get; set; }
 
         public string CategoryName { get; set; }

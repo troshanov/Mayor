@@ -21,6 +21,8 @@
 
         public string CategoryName { get; set; }
 
+        public string StatusStatusCode { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public ICollection<string> IssueTags { get; set; }
@@ -32,6 +34,8 @@
         public string AddressCityName { get; set; }
 
         public int VotesCount { get; set; }
+
+        public IList<string> Attachments { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
@@ -46,7 +50,9 @@
                 .ForMember(vm => vm.IssueTags, opt =>
                     opt.MapFrom(i => i.IssueTags.Select(it => "#" + it.Tag.Value).ToList()))
                 .ForMember(vm => vm.CategoryName, opt =>
-                opt.MapFrom(i => i.Category.Name));
+                    opt.MapFrom(i => i.Category.Name))
+                .ForMember(vm => vm.Attachments, opt =>
+                    opt.MapFrom(i => i.IssueAttachments.Select(a => a.Attachment.Id).ToList()));
         }
     }
 }

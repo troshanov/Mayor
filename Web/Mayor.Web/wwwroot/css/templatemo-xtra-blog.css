@@ -514,7 +514,7 @@ a:hover figcaption { color: #056767; }
     background-image:url("../img/1.jpg");
     background-position: initial;
     /*padding-left: 64px;*/
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     /* margin-right:-110px;
     margin-left:-6px; */
 }
@@ -578,9 +578,8 @@ h3 {
   }
 
 .form-wrapper {
-    margin-right: 85px;
+    padding-top:10px;
     padding-left: 126px;
-    margin-top: 30px;
     padding-bottom: 50px;
     background-image: url("../img/background.jpg");
     background-attachment: fixed;

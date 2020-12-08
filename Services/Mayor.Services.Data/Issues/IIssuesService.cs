@@ -22,5 +22,7 @@
         int GetCountByCateogry(string category);
 
         int GetCountByUserId(string userId);
+
+        Task UpdateStatusById(int issueId, int statusId);
     }
 }

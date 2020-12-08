@@ -170,5 +170,14 @@
                 .Where(i => i.CreatorId == citizenId)
                 .Count();
         }
+
+        public async Task UpdateStatusById(int issueId, int statusId)
+        {
+            var issue = this.issuesRepo.All()
+                .FirstOrDefault(i => i.Id == issueId);
+
+            issue.StatusId = statusId;
+            await this.issuesRepo.SaveChangesAsync();
+        }
     }
 }

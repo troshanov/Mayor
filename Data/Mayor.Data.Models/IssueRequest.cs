@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
     using Mayor.Data.Common.Models;
 
     public class IssueRequest : BaseDeletableModel<int>
@@ -20,15 +20,12 @@
 
         public virtual Issue Issue { get; set; }
 
-        public DateTime DateSubmitted { get; set; }
-
+        [Required]
         public string Description { get; set; }
 
         public bool IsSolveRequest { get; set; }
 
-        public bool IsAcknowledged { get; set; }
-
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
 
         public ICollection<IssueRequestAttachment> IssueRequestAttachments { get; set; }
     }

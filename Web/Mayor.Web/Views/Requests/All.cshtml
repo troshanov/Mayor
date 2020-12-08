@@ -1,0 +1,36 @@
+﻿@using Mayor.Web.ViewModels.Request
+@model RequestListViewModel
+@{
+    this.ViewData["Title"] = "Requests";
+}
+
+<h1 class="col-12" style="color:tomato; margin-bottom:20px;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary tm-mb-55">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Requester Name</th>
+            <th scope="col">Issue Title</th>
+            <th scope="col">Submission Date</th>
+            <th scope="col">Solve Request</th>
+            <th scope="col">Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Requests.Count(); i++)
+        {
+            var request = this.Model.Requests[i];
+            var num = i + 1;
+            <tr>
+                <th scope="row">@num</th>
+                <td>@request.RequesterName</td>
+                <td>@request.IssueTitle</td>
+                <td>@request.CreatedOn.ToString("g")</td>
+                <th class="d-flex justify-content-center"><input type="checkbox" onclick="return false;" @if(request.IsSolveRequest) {<text>checked</text>}/></th>
+                <th><a asp-controller="Requests" asp-action="Single" asp-route-id="@request.Id">Open</a></th>
+            </tr>
+        }
+    </tbody>
+</table>

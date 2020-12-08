@@ -1,10 +1,11 @@
 ﻿namespace Mayor.Web.Controllers
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using Mayor.Services.Data.Attachments;
     using Mayor.Services.Data.Categories;
     using Mayor.Services.Data.Issues;
     using Mayor.Web.ViewModels.Issue;
@@ -17,15 +18,18 @@
         private const int ItemsPerPage = 12;
         private readonly IIssuesService issuesService;
         private readonly ICategoriesService categoriesService;
+        private readonly IAttachmentsService attService;
         private readonly IWebHostEnvironment environment;
 
         public IssuesController(
             IIssuesService issuesService,
             ICategoriesService categoriesService,
+            IAttachmentsService attService,
             IWebHostEnvironment environment)
         {
             this.issuesService = issuesService;
             this.categoriesService = categoriesService;
+            this.attService = attService;
             this.environment = environment;
         }
 
@@ -116,6 +120,25 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public IActionResult Download(string id)
+        {
+            var attachment = this.attService.GetFileById(id);
+            var rootPath = $"{this.environment.WebRootPath}";
+            var pathToFile = rootPath + "/att/issues/" + attachment.Id + attachment.Extension;
+            var fileStream = new FileStream(pathToFile, FileMode.Open);
+
+            var contetType = attachment.Extension switch
+            {
+                ".jpg" => "image/jpeg",
+                ".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                ".png" => "image/png",
+                ".pdf" => "application/pdf",
+                _ => null,
+            };
+            this.HttpContext.Response.Headers.Add("Content-Disposition", $"attachment; filename=\"{attachment.Id}{attachment.Extension}\" ");
+            return this.File(fileStream, contetType);
         }
     }
 }

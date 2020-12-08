@@ -1,7 +1,10 @@
 ﻿@using Mayor.Web.ViewModels.Institution
 @model TopInstitutionsListViewModel
 @{
+    this.ViewData["Title"] = "Top 10";
 }
+<h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary" style="margin-bottom:45px;">
 
 <ol class="list-styled">
     @foreach (var inst in Model.Institutions)

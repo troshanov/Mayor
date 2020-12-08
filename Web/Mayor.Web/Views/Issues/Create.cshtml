@@ -1,12 +1,15 @@
 @using Mayor.Web.ViewModels.Issue
 @model CreateIssueInputModel
-@{ 
-    this.ViewData["Title"] = "Create new issue";
+@{
+    this.ViewData["Title"] = "New Issue";
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
+<h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary" style="margin-bottom:35px;">
+
 <div class="form-wrapper @*border border-dark rounded-pill*@">
-    <h2 class="offset-3" style=" font-size: 2rem; color: tomato; padding-top:30px;">Create a new issue</h2>
+
     <form method="POST" style="margin-top: 30px;" enctype="multipart/form-data">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-row">
@@ -20,7 +23,7 @@
                 <input asp-for="Address.Street" id="street" class="form-control">
                 <span asp-validation-for="Address.Street" class="text-danger"></span>
             </div>
-            <div class="form-group col-1">
+            <div class="form-group col-2">
                 <label asp-for="Address.Number" class="issue-form-lbl">Num</label>
                 <input asp-for="Address.Number" id="number" class="form-control">
                 <span asp-validation-for="Address.Number" class="text-danger"></span>
@@ -32,14 +35,14 @@
                 <textarea asp-for="Description" id="description" class="form-control" rows="11"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="formg-group col-5 offset-1">
+            <div class="formg-group col-6 offset-1">
                 <div class="form-row">
-                    <div class="form-group col-9">
+                    <div class="form-group col-8">
                         <label asp-for="Address.City" class="issue-form-lbl">City</label>
                         <input asp-for="Address.City" id="city" class="form-control">
                         <span asp-validation-for="Address.City" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-4">
                         <label asp-for="Address.PostalCode" class="issue-form-lbl">ZIP</label>
                         <input asp-for="Address.PostalCode" id="post-code" class="form-control">
                     </div>
@@ -59,20 +62,21 @@
                     <div class="form-group col-6">
                         <div class="custom-file">
                             <label asp-for="TitlePicture" class="issue-form-lbl">Title Picture</label>
-                            <input asp-for="TitlePicture" type="file">
+                            <input asp-for="TitlePicture" type="file" style="color:transparent;">
                             <span asp-validation-for="TitlePicture" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group col-5 offset-1">
                         <div class="custom-file">
                             <label asp-for="Attachments" class="issue-form-lbl">Attachments</label>
-                            <input asp-for="Attachments" type="file" multiple><br><br>
+                            <input asp-for="Attachments" type="file" style="color:transparent;" multiple>
                             <span asp-validation-for="Attachments" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br />
         <button type="submit" class="btn btn-info col-6 offset-2">Submit</button>
     </form>
 </div>

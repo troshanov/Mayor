@@ -1,0 +1,44 @@
+﻿@using Mayor.Web.ViewModels.Request
+@model RequestInputModel
+@{
+    this.ViewData["Title"] = "New Request";
+}
+<h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary" style="margin-bottom:35px;">
+
+<div class="form-wrapper">
+    <form method="post" class="justify-content-center" enctype="multipart/form-data">
+        <div class="form-group col-md-10">
+            <label for="request-type-radios" class="issue-form-lbl">Request Type</label>
+            <div class="form-control" id="request-type-radios">
+                <div class="form-row">
+                    <div class="col-6">
+                        @Html.RadioButtonFor(model => model.IsSolveRequest, "false", new { id = "process-request" })
+                        @Html.Label("process-request", "Process Requset")
+                    </div>
+                    <div class="col-6">
+                        @Html.RadioButtonFor(model => model.IsSolveRequest, "true", new { id = "solve-request" })
+                        @Html.Label("solve-request", "Solve Request")
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="IsSolveRequest" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-10">
+            <label asp-for="Description" class="issue-form-lbl">Description</label>
+            <textarea asp-for="Description" id="description" class="form-control" rows="11"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-10" style="margin-top:35px;">
+            <div class="custom-file">
+                <label asp-for="Attachments" class="issue-form-lbl">Attachments</label>
+                <div>
+                    <input asp-for="Attachments" type="file" multiple><br><br>
+                    <span asp-validation-for="Attachments" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <input asp-for="IssueId" type="hidden" />
+        <button type="submit" class="btn btn-info col-md-10">Submit</button>
+    </form>
+</div>
