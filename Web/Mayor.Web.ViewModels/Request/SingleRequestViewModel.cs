@@ -7,7 +7,6 @@
     using AutoMapper;
     using Mayor.Data.Models;
     using Mayor.Services.Mapping;
-    using Microsoft.AspNetCore.Http;
 
     public class SingleRequestViewModel : IMapTo<IssueRequest>, IHaveCustomMappings
     {

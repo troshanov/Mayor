@@ -1,0 +1,21 @@
+﻿@using Mayor.Web.ViewModels.Comment
+@model ListOfCommentsViewModel
+
+@foreach (var comment in Model.Comments)
+{
+    <div class="tm-comment tm-mb-45">
+        <figure class="tm-comment-figure">
+            <img src="@comment.UserAvatarUrl" width="150" height="150" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+            <figcaption class="tm-color-primary text-center">@comment.UserName</figcaption>
+        </figure>
+        <div>
+            <div class="d-flex justify-content-between">
+                <span class="tm-color-primary">@comment.CreatedOn</span>
+            </div>
+            <p>
+                @comment.Content
+            </p>
+        </div>
+    </div>
+    <hr />
+}

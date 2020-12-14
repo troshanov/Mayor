@@ -15,6 +15,7 @@
             this.IssueAttachments = new HashSet<IssueAttachment>();
             this.Pictures = new HashSet<Picture>();
             this.Votes = new HashSet<Vote>();
+            this.IssueComments = new HashSet<Comment>();
         }
 
         [Required]
@@ -55,5 +56,7 @@
         public ICollection<IssueReview> IssueReviews { get; set; }
 
         public ICollection<Vote> Votes { get; set; }
+
+        public virtual ICollection<Comment> IssueComments { get; set; }
     }
 }

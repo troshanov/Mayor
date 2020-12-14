@@ -1,4 +1,5 @@
 ﻿@using Mayor.Web.ViewModels.Issue
+@using System.Security.Claims;
 @model SingleIssueViewModel
 @{
     this.ViewData["Title"] = "Issue";
@@ -9,7 +10,7 @@
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
         <!-- Video player 1422x800 -->
-        <img src="@Model.ImageUrl" style="margin-bottom:30px; margin-top:-30px;" width="900" height="535" alt="Issue image">
+        <img src="@Model.ImageUrl" style="margin-bottom:30px; margin-top:-30px;" width="850" height="535" alt="Issue image">
         <span class="badge badge-warning badge-pill">@Model.StatusStatusCode</span>
     </div>
 </div>
@@ -35,19 +36,26 @@
                 <p>
                     @string.Join(" ", Model.IssueTags)
                 </p>
-                <span class="d-block text-left tm-color-primary">
-                    Attachments:
-                    @for (int i = 0; i < Model.Attachments.Count(); i++)
-                    {
-                        var attId = Model.Attachments[i];
-                        var num = i + 1;
-                        <br />
-                        <a asp-controller="Issues" asp-action="Download" asp-route-id="@attId">Attachment @num</a>
-                    }
-                </span>
+                @if (Model.Attachments != null && Model.Attachments.Any())
+                {
+                    <span class="d-block text-left tm-color-primary">
+                        Attachments:
+                        @for (int i = 0; i < Model.Attachments.Count(); i++)
+                        {
+                            var attId = Model.Attachments[i];
+                            var num = i + 1;
+                            <br />
+                            <a asp-controller="Issues" asp-action="Download" asp-route-id="@attId">Attachment @num</a>
+                        }
+                    </span>
+                }
                 @if (this.User.IsInRole("Institution"))
                 {
                     <a class="btn-info btn-lg offset-8" asp-controller="Requests" asp-action="New" asp-route-id="@Model.Id">New Request</a>
+                }
+                else if (this.User.IsInRole("Citizen") && Model.StatusStatusCode == "Solved")
+                {
+                    <a class="btn-info btn-lg offset-8" asp-controller="Reviews" asp-action="New" asp-route-id="@Model.Id">New Review</a>
                 }
             </div>
 
@@ -55,50 +63,29 @@
             <div>
                 <h2 class="tm-color-primary tm-post-title">Comments</h2>
                 <hr class="tm-hr-primary tm-mb-45">
-                <div class="tm-comment tm-mb-45">
-                    <figure class="tm-comment-figure">
-                        <img src="img/comment-1.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                        <figcaption class="tm-color-primary text-center">Mark Sonny</figcaption>
-                    </figure>
-                    <div>
-                        <p>
-                            Praesent aliquam ex vel lectus ornare tritique. Nunc et eros
-                            quis enim feugiat tincidunt et vitae dui. Nullam consectetur
-                            justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus
-                            sapien vel, euismod turpis.
-                        </p>
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="tm-color-primary">REPLY</a>
-                            <span class="tm-color-primary">June 14, 2020</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="tm-comment-reply tm-mb-45">
-                    <hr>
-                    <div class="tm-comment">
-                        <figure class="tm-comment-figure">
-                            <img src="img/comment-2.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                            <figcaption class="tm-color-primary text-center">Jewel Soft</figcaption>
-                        </figure>
-                        <p>
-                            Nunc et eros quis enim feugiat tincidunt et vitae dui.
-                            Nullam consectetur justo ac ex laoreet rhoncus. Nunc
-                            id leo pretium, faucibus sapien vel, euismod turpis.
-                        </p>
-                    </div>
-                    <span class="d-block text-right tm-color-primary">June 21, 2020</span>
-                </div>
-                <form action="" class="mb-5 tm-comment-form">
+                <div id="comment-section"><vc:users-comments issue-id="@Model.Id" page="1"></vc:users-comments></div>
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a id="prev-page" class="page-link" onclick="commentsPrev(0, @Model.Id)">Previous</a>
+                            @*<a class="page-link" asp-controller="Comments" asp-action="GetComments" asp-route-issueId="@Model.Id" asp-route-page="@Model.PreviousPageNumber">Previous</a>*@
+                        </li>
+                        <li class="page-item">
+                            <a id="next-page" class="page-link" onclick="commentsNext(2, @Model.Id)">Next</a>
+                            @*<a class="page-link" asp-controller="Comments" asp-action="GetComments" asp-route-issueId="@Model.Id" asp-route-page="@Model.NextPageNumber">Next</a>*@
+                        </li>
+                    </ul>
+                </nav>
+
+                <form method="post" asp-controller="Comments" asp-action="Create" class="mb-5 tm-comment-form">
                     <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
                     <div class="mb-4">
-                        <input class="form-control" name="name" type="text">
+                        <label asp-for="CommentInput.Content"></label>
+                        <textarea asp-for="CommentInput.Content" class="form-control" rows="6"></textarea>
+                        <span asp-validation-for="CommentInput.Content"></span>
                     </div>
-                    <div class="mb-4">
-                        <input class="form-control" name="email" type="text">
-                    </div>
-                    <div class="mb-4">
-                        <textarea class="form-control" name="message" rows="6"></textarea>
-                    </div>
+                    <input asp-for="CommentInput.IssueId" hidden value="@Model.Id" />
+                    <input asp-for="CommentInput.UserId" hidden value="@this.User.FindFirst(ClaimTypes.NameIdentifier).Value" />
                     <div class="text-right">
                         <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
                     </div>
@@ -126,3 +113,44 @@
         </div>
     </aside>
 </div>
+
+<script>
+    function commentsNext(page, issueId) {
+        if (page > @Model.PagesCount) {
+            return;
+        }
+        var id = '#comment-section';
+        var data = { IssueId: issueId, Page: page };
+        $.ajax({
+            type: 'POST',
+            url: '/Comments/GetComments',
+            data: JSON.stringify(data),
+            success: function (data) {
+                $(id).html(data);
+                $('#prev-page').attr('onclick', 'commentsPrev(' + (page - 1) + ', ' + issueId + ')');
+                $('#next-page').attr('onclick', 'commentsNext(' + (page + 1) + ', ' + issueId + ')');
+            },
+            contentType: 'application/json',
+        });
+    }
+</script>
+<script>
+    function commentsPrev(page, issueId) {
+        if (page < 1) {
+            return;
+        }
+        var id = '#comment-section';
+        var data = { IssueId: issueId, Page: page };
+        $.ajax({
+            type: 'POST',
+            url: '/Comments/GetComments',
+            data: JSON.stringify(data),
+            success: function (data) {
+                $(id).html(data);
+                $('#prev-page').attr('onclick', 'commentsPrev(' + (page - 1) + ', ' + issueId + ')');
+                $('#next-page').attr('onclick', 'commentsNext(' + (page + 1) + ', ' + issueId + ')');
+            },
+            contentType: 'application/json',
+        });
+    }
+</script>

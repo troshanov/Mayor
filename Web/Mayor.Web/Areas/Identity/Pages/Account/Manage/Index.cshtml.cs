@@ -103,6 +103,7 @@
             var userName = await this._userManager.GetUserNameAsync(user);
             var phoneNumber = await this._userManager.GetPhoneNumberAsync(user);
             var profilePic = this.picService.GetProfilePicByUserId(user.Id);
+            var description = this._userManager.FindByIdAsync(user.Id).Result.Description;
 
             this.Username = userName;
             this.PicId = profilePic.Id;
@@ -111,6 +112,7 @@
             this.Input = new AppUserProfileInputModel
             {
                 PhoneNumber = phoneNumber,
+                Description = description,
             };
 
             if (this.User.IsInRole("Citizen"))
@@ -193,6 +195,18 @@
                 {
                     this.ModelState.AddModelError(string.Empty, ex.Message);
                     return this.Page();
+                }
+            }
+
+            var description = user.Description;
+            if (this.Input.Description != description)
+            {
+                user.Description = this.Input.Description;
+                var setDescriptionResult = await this._userManager.UpdateAsync(user);
+                if (!setDescriptionResult.Succeeded)
+                {
+                    this.StatusMessage = "Unexpected error when trying to set phone number.";
+                    return this.RedirectToPage();
                 }
             }
 

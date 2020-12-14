@@ -5,9 +5,12 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using Mayor.Services.Data.Attachments;
     using Mayor.Services.Data.Categories;
+    using Mayor.Services.Data.Comments;
     using Mayor.Services.Data.Issues;
+    using Mayor.Web.ViewModels.Comment;
     using Mayor.Web.ViewModels.Issue;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
@@ -20,17 +23,20 @@
         private readonly ICategoriesService categoriesService;
         private readonly IAttachmentsService attService;
         private readonly IWebHostEnvironment environment;
+        private readonly ICommentsService commentsService;
 
         public IssuesController(
             IIssuesService issuesService,
             ICategoriesService categoriesService,
             IAttachmentsService attService,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            ICommentsService commentsService)
         {
             this.issuesService = issuesService;
             this.categoriesService = categoriesService;
             this.attService = attService;
             this.environment = environment;
+            this.commentsService = commentsService;
         }
 
         [Authorize(Roles = "Citizen, Administrator")]
@@ -96,7 +102,7 @@
         }
 
         [Route("Issues/{id:int}")]
-        public IActionResult Single(int id)
+        public IActionResult Single(int id, int page = 1)
         {
             var viewModel = this.issuesService.GetById<SingleIssueViewModel>(id);
 
@@ -104,6 +110,10 @@
                 .GetAllByCategoryName<IssueInSidebarViewModel>(1, viewModel.CategoryName, 5)
                 .OrderByDescending(vm => vm.VotesCount)
                 .ToList();
+            viewModel.CommentInput = new CommentInputModel();
+            viewModel.PageNumber = page;
+            viewModel.ItemsPerPage = 3;
+            viewModel.IssuesCount = this.commentsService.GetCountByIssueId(id);
 
             return this.View(viewModel);
         }

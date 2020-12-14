@@ -1,17 +1,18 @@
-﻿using Mayor.Data.Common.Repositories;
-using Mayor.Data.Models;
-using Mayor.Services.Data.Attachments;
-using Mayor.Services.Data.Citizens;
-using Mayor.Services.Data.Institutions;
-using Mayor.Services.Data.Issues;
-using Mayor.Services.Mapping;
-using Mayor.Web.ViewModels.Request;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Mayor.Services.Data.Requests
+﻿namespace Mayor.Services.Data.Requests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Mayor.Data.Common.Repositories;
+    using Mayor.Data.Models;
+    using Mayor.Services.Data.Attachments;
+    using Mayor.Services.Data.Citizens;
+    using Mayor.Services.Data.Institutions;
+    using Mayor.Services.Data.Issues;
+    using Mayor.Services.Mapping;
+    using Mayor.Web.ViewModels.Request;
+
     public class RequestsService : IRequestsService
     {
         private readonly IDeletableEntityRepository<IssueRequest> requestsRepo;
@@ -53,7 +54,7 @@ namespace Mayor.Services.Data.Requests
 
             if (request.IsSolveRequest)
             {
-               await this.issuesService.UpdateStatusById(request.IssueId, 4);
+               await this.issuesService.UpdateStatusById(request.IssueId, 4, request.RequesterId);
             }
             else
             {

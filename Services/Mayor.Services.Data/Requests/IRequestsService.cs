@@ -1,9 +1,10 @@
-﻿using Mayor.Web.ViewModels.Request;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Mayor.Services.Data.Requests
+﻿namespace Mayor.Services.Data.Requests
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using Mayor.Web.ViewModels.Request;
+
     public interface IRequestsService
     {
         Task CreateAsync(RequestInputModel input, string userId, string rootPath);

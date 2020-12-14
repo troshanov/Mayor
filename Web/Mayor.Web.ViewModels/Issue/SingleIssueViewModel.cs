@@ -6,8 +6,9 @@
 
     using AutoMapper;
     using Mayor.Services.Mapping;
+    using Mayor.Web.ViewModels.Comment;
 
-    public class SingleIssueViewModel : IMapFrom<Mayor.Data.Models.Issue>, IHaveCustomMappings
+    public class SingleIssueViewModel : PagingViewModel, IMapFrom<Mayor.Data.Models.Issue>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -22,6 +23,8 @@
         public string CategoryName { get; set; }
 
         public string StatusStatusCode { get; set; }
+
+        public CommentInputModel CommentInput { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
@@ -52,7 +55,25 @@
                 .ForMember(vm => vm.CategoryName, opt =>
                     opt.MapFrom(i => i.Category.Name))
                 .ForMember(vm => vm.Attachments, opt =>
-                    opt.MapFrom(i => i.IssueAttachments.Select(a => a.Attachment.Id).ToList()));
+                    opt.MapFrom(i => i.IssueAttachments.Select(a => a.Attachment.Id).ToList()))
+                .ForMember(vm => vm.CommentInput, opt =>
+                    opt.Ignore())
+                .ForMember(vm => vm.HasNextPage, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.HasPreviousPage, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.IssuesCount, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.ItemsPerPage, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.NextPageNumber, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.PreviousPageNumber, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.PagesCount, opt =>
+                opt.Ignore())
+                .ForMember(vm => vm.PageNumber, opt =>
+                opt.Ignore());
         }
     }
 }

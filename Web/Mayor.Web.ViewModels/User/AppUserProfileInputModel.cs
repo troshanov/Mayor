@@ -14,6 +14,8 @@ namespace Mayor.Web.ViewModels.User
         [Display(Name = "Profile Picture")]
         public IFormFile ProfilePicture { get; set; }
 
+        public string Description { get; set; }
+
         public bool IsCitizen { get; set; }
 
         // Citizen properties

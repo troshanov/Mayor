@@ -10,5 +10,7 @@
         Task CreateAsync(AppUserInputModel input, string userId);
 
         Citizen GetByUserId(string userId);
+
+        Citizen GetById(int id);
     }
 }

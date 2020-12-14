@@ -23,6 +23,8 @@
 
         int GetCountByUserId(string userId);
 
-        Task UpdateStatusById(int issueId, int statusId);
+        Task UpdateStatusById(int issueId, int statusId, int requesterId = 0);
+
+        int GetSolvedRequestIdById(int issueId);
     }
 }

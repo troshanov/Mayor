@@ -1,11 +1,9 @@
-﻿// ReSharper disable VirtualMemberCallInConstructor
-namespace Mayor.Data.Models
+﻿namespace Mayor.Data.Models
 {
     using System;
     using System.Collections.Generic;
 
     using Mayor.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -17,7 +15,10 @@ namespace Mayor.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Pictures = new HashSet<Picture>();
+            this.UserComments = new HashSet<Comment>();
         }
+
+        public string Description { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
@@ -36,5 +37,7 @@ namespace Mayor.Data.Models
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
+
+        public virtual ICollection<Comment> UserComments { get; set; }
     }
 }

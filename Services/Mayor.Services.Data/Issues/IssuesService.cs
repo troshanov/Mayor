@@ -14,6 +14,7 @@
     using Mayor.Services.Data.Pictures;
     using Mayor.Services.Mapping;
     using Mayor.Web.ViewModels.Issue;
+    using Microsoft.EntityFrameworkCore;
 
     public class IssuesService : IIssuesService
     {
@@ -171,12 +172,27 @@
                 .Count();
         }
 
-        public async Task UpdateStatusById(int issueId, int statusId)
+        public int GetSolvedRequestIdById(int issueId)
+        {
+            return this.issuesRepo.AllAsNoTracking()
+                .Include(i => i.IssueRequests)
+                .FirstOrDefault(i => i.Id == issueId)
+                .IssueRequests
+                .Where(ir => ir.IsSolveRequest == true && ir.IsApproved == true)
+                .Select(ir => ir.Id)
+                .FirstOrDefault();
+        }
+
+        public async Task UpdateStatusById(int issueId, int statusId, int requesterId = 0)
         {
             var issue = this.issuesRepo.All()
                 .FirstOrDefault(i => i.Id == issueId);
 
             issue.StatusId = statusId;
+            if (requesterId != 0)
+            {
+                issue.SolverId = requesterId;
+            };
             await this.issuesRepo.SaveChangesAsync();
         }
     }

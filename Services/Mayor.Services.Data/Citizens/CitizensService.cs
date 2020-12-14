@@ -6,6 +6,7 @@
     using Mayor.Data.Common.Repositories;
     using Mayor.Data.Models;
     using Mayor.Web.ViewModels.User;
+    using Microsoft.EntityFrameworkCore;
 
     public class CitizensService : ICitizensService
     {
@@ -30,6 +31,12 @@
 
             await this.citizenRepo.AddAsync(citizen);
             await this.citizenRepo.SaveChangesAsync();
+        }
+
+        public Citizen GetById(int id)
+        {
+            return this.citizenRepo.All()
+                .FirstOrDefault(c => c.Id == id);
         }
 
         public Citizen GetByUserId(string userId)

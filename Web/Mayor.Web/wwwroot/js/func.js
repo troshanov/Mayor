@@ -27,6 +27,39 @@ function vote(issueId, voteElement){
     });
 }
 
+// function commentsNext(page, issueId){
+// var id = '#comment-section';
+// var data = {IssueId: issueId, Page: page};
+// $.ajax({
+//     type: 'POST',
+//     url: '/Comments/GetComments',
+//     data: JSON.stringify(data),
+//     success: function (data) {
+//         $(id).html(data);
+//         $('#prev-page').attr('onclick','commentsPrev(' + (page - 1) +', ' + issueId +')');
+//         $('#next-page').attr('onclick','commentsNext(' + (page + 1) +', ' + issueId +')');
+//     },
+//     contentType: 'application/json',
+// });
+// }
+
+
+// function commentsPrev(page, issueId){
+//     var id = '#comment-section';
+//     var data = {IssueId: issueId, Page: page};
+//     $.ajax({
+//         type: 'POST',
+//         url: '/Comments/GetComments',
+//         data: JSON.stringify(data),
+//         success: function (data) {
+//             $(id).html(data);
+//             $('#prev-page').attr('onclick','commentsPrev(' + (page + 1) +', ' + issueId +')');
+//             $('#next-page').attr('onclick','commentsNext(' + (page - 1) +', ' + issueId +')');
+//         },
+//         contentType: 'application/json',
+//     });
+// }
+
 function submitForms(){
   document.getElementById("f0").submit();
   document.getElementById("f1").submit();

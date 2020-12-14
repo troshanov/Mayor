@@ -1,0 +1,70 @@
+﻿@using Mayor.Web.ViewModels.User
+@model AppUserProfileViewModel
+@{
+    this.ViewData["Title"] = "Profile";
+}
+<h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary" style="margin-bottom:45px;">
+
+<div class="offset-md-10" style="margin-top:20px;">
+    @if (Model.IsProfileOwner)
+    {
+        <p>
+            Settings
+            <a class="btn-info btn-lg" asp-area="Identity" asp-controller="Account" asp-action="Manage"><i class="fas fa-cogs"></i></a>
+        </p>
+    }
+</div>
+<div class="row form-wrapper" style="margin-left:0px; margin-right:0px; padding-top:0px; padding-left:0px;">
+    <div class="col-md-6" style="padding-left:0px;">
+        <div>
+            <img class="rounded" id="profile-img" style="" src="@Model.ProfilePicUrl" alt="Profile Picture" />
+        </div>
+        @if (!Model.IsCitizen)
+        {
+            <div style="margin-left:5px;">
+                <p>Rating: <span class="badge badge-warning badge-pill"> @Model.Rating?.ToString("f2") / 5</span></p>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <p>Email:</p>
+        <div class="form-control">
+            <p>@Model.Email</p>
+        </div>
+        <p>Phone Number:</p>
+        <div class="form-control">
+            <p>@Model.PhoneNumber</p>
+        </div>
+        @if (Model.IsCitizen)
+        {
+            <p>Full Name:</p>
+            <div class="form-control">
+                <p>@Model.FullName</p>
+            </div>
+            <p>Birthdate:</p>
+            <div class="form-control">
+                <p>@Model.Birthdate</p>
+            </div>
+        }
+        else
+        {
+            <p>Name:</p>
+            <div class="form-control">
+                <p>@Model.Name</p>
+            </div>
+            <p>Website:</p>
+            <div class="form-control">
+                <p>@Model.WebsiteUrl</p>
+            </div>
+            <p>Type</p>
+            <div class="form-control">
+                <p>@Model.InstitutionType</p>
+            </div>
+        }
+        <div>
+            <p>Description:</p>
+            <textarea class="form-control" rows="10">@Model.Description</textarea>
+        </div>
+    </div>
+</div>

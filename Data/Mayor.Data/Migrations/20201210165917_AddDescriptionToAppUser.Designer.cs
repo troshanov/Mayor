@@ -4,14 +4,16 @@ using Mayor.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mayor.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201210165917_AddDescriptionToAppUser")]
+    partial class AddDescriptionToAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,39 +323,6 @@ namespace Mayor.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("Mayor.Data.Models.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("nvarchar(160)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IssueId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IssueId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.Institution", b =>
@@ -808,23 +777,6 @@ namespace Mayor.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Mayor.Data.Models.Comment", b =>
-                {
-                    b.HasOne("Mayor.Data.Models.Issue", "Issue")
-                        .WithMany("IssueComments")
-                        .HasForeignKey("IssueId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Mayor.Data.Models.ApplicationUser", "User")
-                        .WithMany("UserComments")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Issue");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Mayor.Data.Models.Institution", b =>
                 {
                     b.HasOne("Mayor.Data.Models.ApplicationUser", "User")
@@ -1073,8 +1025,6 @@ namespace Mayor.Data.Migrations
                     b.Navigation("Pictures");
 
                     b.Navigation("Roles");
-
-                    b.Navigation("UserComments");
                 });
 
             modelBuilder.Entity("Mayor.Data.Models.Attachment", b =>
@@ -1113,8 +1063,6 @@ namespace Mayor.Data.Migrations
             modelBuilder.Entity("Mayor.Data.Models.Issue", b =>
                 {
                     b.Navigation("IssueAttachments");
-
-                    b.Navigation("IssueComments");
 
                     b.Navigation("IssueRequests");
 
