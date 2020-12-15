@@ -1,0 +1,23 @@
+﻿@using System.Linq
+@using Mayor.Web.ViewModels.Issue
+@model TopIssuesListViewModel
+@{
+    this.ViewData["Title"] = "Top Issues";
+}
+
+<h1 class="col-12" style="color:tomato; margin-bottom:20px;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary" style="margin-bottom:25px;">
+<ul class="list-unstyled">
+    @foreach (var issue in Model.Issues)
+    {
+        <li class="media media oli">
+            <img class="mr-3" height="150" width="250" src="@issue.ImageUrl" alt="Issue picture">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1"><a asp-controller="Issues" asp-action="Single" asp-route-id="@issue.Id">@issue.Title</a></h5>
+                @string.Join("", issue.Description.Take(50).ToList())...
+                <p class="text-muted mt-0 mb-1">Created by @issue.CreatorName</p>
+            </div>
+        </li>
+        <hr />
+    }
+</ul>

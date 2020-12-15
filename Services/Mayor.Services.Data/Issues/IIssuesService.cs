@@ -26,5 +26,7 @@
         Task UpdateStatusById(int issueId, int statusId, int requesterId = 0);
 
         int GetSolvedRequestIdById(int issueId);
+
+        IEnumerable<T> GetTopTen<T>();
     }
 }

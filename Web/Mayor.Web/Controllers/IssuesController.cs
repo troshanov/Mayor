@@ -150,5 +150,15 @@
             this.HttpContext.Response.Headers.Add("Content-Disposition", $"attachment; filename=\"{attachment.Id}{attachment.Extension}\" ");
             return this.File(fileStream, contetType);
         }
+
+        public IActionResult Top()
+        {
+            var viewModel = new TopIssuesListViewModel
+            {
+                Issues = this.issuesService.GetTopTen<TopIssueViewModel>(),
+            };
+            ;
+            return this.View(viewModel);
+        }
     }
 }

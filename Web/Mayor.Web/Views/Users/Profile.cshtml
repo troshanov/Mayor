@@ -3,17 +3,24 @@
 @{
     this.ViewData["Title"] = "Profile";
 }
-<h1 style="color:tomato;">@this.ViewData["Title"]</h1>
-<hr class="tm-hr-primary" style="margin-bottom:45px;">
+<div class="row">
+    <div class="col-md-3">
+    <h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+    </div>
+    <div class="col-md-3 offset-md-6" style="padding-left: 50px; padding-top: 10px;">
+        @if (Model.IsProfileOwner)
+        {
+            <p style="margin-bottom: 0px;">
+                Settings
+                <a class="btn-info btn-lg" asp-area="Identity" asp-controller="Account" asp-action="Manage"><i class="fas fa-cogs"></i></a>
+            </p>
+        }
+    </div>
+</div>
+<hr class="tm-hr-primary" style="margin-bottom:35px; margin-top: 0px;">
 
 <div class="offset-md-10" style="margin-top:20px;">
-    @if (Model.IsProfileOwner)
-    {
-        <p>
-            Settings
-            <a class="btn-info btn-lg" asp-area="Identity" asp-controller="Account" asp-action="Manage"><i class="fas fa-cogs"></i></a>
-        </p>
-    }
+    
 </div>
 <div class="row form-wrapper" style="margin-left:0px; margin-right:0px; padding-top:0px; padding-left:0px;">
     <div class="col-md-6" style="padding-left:0px;">

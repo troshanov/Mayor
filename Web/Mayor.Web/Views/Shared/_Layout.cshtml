@@ -17,6 +17,12 @@
         <div class="row">
             <div class="tm-header col-3" id="tm-header">
                 <div class="tm-header-wrapper">
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <p style="color: whitesmoke;margin-bottom:0px;">Welcome, @this.User.Identity.Name!</p>
+                        </div>
+                    }
                     <div class="tm-site-header">
                         <div class="mb-3 mx-auto tm-site-logo"><img src="~/img/icons/buildings.png" alt="buildings"></div>
                         <h1 class="font-weight-bolder text-center" style="margin-top: 40px; font-size: 3em; margin-bottom: -45px; color: whitesmoke">MAYOR</h1>
@@ -25,7 +31,7 @@
                         <ul>
                             @if (!this.User.Identity.IsAuthenticated)
                             {
-                                <li class="tm-nav-item active">
+                                <li class="tm-nav-item @*active*@">
                                     <a asp-area="" asp-controller="Home" asp-action="Index" class="tm-nav-link">
                                         <i class="fas fa-home"></i>
                                         Home
@@ -76,16 +82,28 @@
                                         All Issues
                                     </a>
                                 </li>
-                                <li class="tm-nav-item">
-                                    <a asp-area="" asp-controller="Users" asp-action="Top" class="tm-nav-link">
-                                        <i class="fas fa-trophy"></i>
-                                        Top 10
-                                    </a>
-                                </li>
+                                @if (this.User.IsInRole("Citizen"))
+                                {
+                                    <li class="tm-nav-item">
+                                        <a asp-area="" asp-controller="Users" asp-action="Top" class="tm-nav-link">
+                                            <i class="fas fa-trophy"></i>
+                                            Top 10
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="tm-nav-item">
+                                        <a asp-area="" asp-controller="Issues" asp-action="Top" class="tm-nav-link">
+                                            <i class="fas fa-trophy"></i>
+                                            Top 10
+                                        </a>
+                                    </li>
+                                }
 
                             }
                             <li class="tm-nav-item">
-                                <a href="about.html" class="tm-nav-link">
+                                <a asp-area="" asp-controller="Home" asp-action="About" class="tm-nav-link">
                                     <i class="fas fa-question"></i>
                                     About Mayor
                                 </a>
@@ -197,6 +215,8 @@
                     </div>
                     @this.RenderBody()
                 </main>
+
+                <hr class="tm-hr-primary" style="margin-top:25px;">
                 <footer class="ranna-bg-dark">
                     <div class="container">
                         &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

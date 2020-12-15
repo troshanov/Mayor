@@ -5,7 +5,7 @@
 }
 
 <h1 class="col-12" style="color:tomato; margin-bottom:20px;">@this.ViewData["Title"]</h1>
-@*<hr style="margin-bottom:20px;" />*@
+<hr class="tm-hr-primary" style="margin-bottom:25px;">
 <div class="row">
     @for (int i = 0; i < this.Model.Issues.Count(); i++)
     {
@@ -23,7 +23,6 @@
                 <li class="list-group-item">@issue.Address</li>
             </ul>
             <div class="card-body row">
-                @*Well aware I should not be using onclick attribute, the usage here is exceptional!*@
                 <div class="col-md-6">
                     <a href="#" class="vote-btn card-link" onclick="vote(@issue.Id,@("voteBadge" + i)); return false;">Vote</a>
                     <span class="badge badge-primary badge-pill" id="@("voteBadge" + i)">@issue.VotesCount</span>
@@ -65,4 +64,3 @@
         </li>
     </ul>
 </nav>
-<hr style="margin-top:10px; margin-bottom:20px;" />

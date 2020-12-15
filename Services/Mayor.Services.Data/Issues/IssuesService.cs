@@ -108,6 +108,7 @@
             // TODO: Order items
             return this.issuesRepo.AllAsNoTracking()
                 .Where(i => i.Pictures.Any())
+                .OrderByDescending(i => i.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -183,6 +184,16 @@
                 .FirstOrDefault();
         }
 
+        public IEnumerable<T> GetTopTen<T>()
+        {
+           return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.StatusId != 4)
+                .OrderByDescending(i => i.Votes.Count)
+                .Take(10)
+                .To<T>()
+                .ToList();
+        }
+
         public async Task UpdateStatusById(int issueId, int statusId, int requesterId = 0)
         {
             var issue = this.issuesRepo.All()
@@ -193,6 +204,7 @@
             {
                 issue.SolverId = requesterId;
             };
+
             await this.issuesRepo.SaveChangesAsync();
         }
     }

@@ -3,7 +3,17 @@
     this.ViewData["Title"] = "Home Page";
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to <a asp-controller="Home" style="color:tomato;" asp-action="About">Mayor</a>!</h1>
 </div>
+<hr class="tm-hr-primary" style="margin-bottom:25px;">
+<div class="text-center">
+    <img src="~/gifs/Home.gif" style="width:-webkit-fill-available;" />
+</div>
+@if (!this.User.Identity.IsAuthenticated)
+{
+    <div class="text-center alert alert-info" role="alert" style="margin-bottom: 45px;">
+        <p><a asp-area="Identity" asp-controller="Account" asp-action="Register">Create an account</a> and start building your community now!</p>
+    </div>
+}
