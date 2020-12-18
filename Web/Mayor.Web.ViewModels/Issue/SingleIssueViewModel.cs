@@ -22,6 +22,8 @@
 
         public string CategoryName { get; set; }
 
+        public string CreatorUserId { get; set; }
+
         public string StatusStatusCode { get; set; }
 
         public CommentInputModel CommentInput { get; set; }

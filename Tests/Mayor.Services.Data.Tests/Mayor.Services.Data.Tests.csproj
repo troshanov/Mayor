@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Mayor.Data\Mayor.Data.csproj" />
     <ProjectReference Include="..\..\Services\Mayor.Services.Data\Mayor.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Mayor.Services\Mayor.Services.csproj" />
   </ItemGroup>
 
 </Project>

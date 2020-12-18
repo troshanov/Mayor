@@ -17,7 +17,7 @@ namespace Mayor.Web.ViewComponents
 
         public IViewComponentResult Invoke(int page, int issueId)
         {
-            ;
+
             var viewModel = new ListOfCommentsViewModel
             {
                 Comments = this.commentsService.GetAllByIssueId(page, issueId, ItemsPerPage),

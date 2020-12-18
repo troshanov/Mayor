@@ -1,18 +1,19 @@
-﻿using Mayor.Data;
-using Mayor.Services.Data.Attachments;
-using Mayor.Services.Data.Requests;
-using Mayor.Web.ViewModels.Request;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace Mayor.Web.Controllers
+﻿namespace Mayor.Web.Controllers
 {
+    using System;
+    using System.IO;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    using Mayor.Data;
+    using Mayor.Services.Data.Attachments;
+    using Mayor.Services.Data.Requests;
+    using Mayor.Web.ViewModels.Request;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+
+    [Authorize]
     public class RequestsController : Controller
     {
         private readonly IWebHostEnvironment environment;
@@ -32,6 +33,7 @@ namespace Mayor.Web.Controllers
             this.dbContext = dbContext;
         }
 
+        [Authorize(Roles = "Institution")]
         public IActionResult New(int id)
         {
             var viewModel = new RequestInputModel
@@ -42,6 +44,7 @@ namespace Mayor.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Institution")]
         public async Task<IActionResult> New(RequestInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -66,6 +69,7 @@ namespace Mayor.Web.Controllers
             return this.Redirect("/");
         }
 
+        [Authorize(Roles = "Citizen")]
         public IActionResult All()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -84,15 +88,19 @@ namespace Mayor.Web.Controllers
             return this.View(viewModel);
         }
 
+        [Authorize(Roles = "Citizen")]
         public async Task<IActionResult> Approve(int id)
         {
-            await this.requestsService.ApproveById(id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            await this.requestsService.ApproveById(id, userId);
             return this.Redirect("/Requests/All");
         }
 
+        [Authorize(Roles = "Citizen")]
         public async Task<IActionResult> Dismiss(int id)
         {
-            await this.requestsService.DismissById(id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            await this.requestsService.DismissById(id, userId);
             return this.Redirect("/Requests/All");
         }
 

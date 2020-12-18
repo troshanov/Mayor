@@ -14,11 +14,14 @@ function vote(issueId, voteElement){
     
     var id = '#' + voteElement.id;
     console.log(issueId, id);
-
+    var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
     var data = { issueId: issueId };
     $.ajax({
         type: "POST",
         url: "/api/Votes",
+        headers: {
+            'X-CSRF-TOKEN': antiForgeryToken
+        },
         data: JSON.stringify(data),
         success: function (data) {
             $(id).html(data.votesCount);
@@ -34,7 +37,7 @@ function vote(issueId, voteElement){
 //     type: 'POST',
 //     url: '/Comments/GetComments',
 //     data: JSON.stringify(data),
-//     success: function (data) {
+//     success: function (data) { 
 //         $(id).html(data);
 //         $('#prev-page').attr('onclick','commentsPrev(' + (page - 1) +', ' + issueId +')');
 //         $('#next-page').attr('onclick','commentsNext(' + (page + 1) +', ' + issueId +')');

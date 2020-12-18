@@ -1,12 +1,13 @@
-﻿using Mayor.Services.Data.Issues;
-using Mayor.Services.Data.Votes;
-using Mayor.Web.ViewModels.Vote;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace Mayor.Web.Controllers
+﻿namespace Mayor.Web.Controllers
 {
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    using Mayor.Services.Data.Issues;
+    using Mayor.Services.Data.Votes;
+    using Mayor.Web.ViewModels.Vote;
+    using Microsoft.AspNetCore.Mvc;
+
     [ApiController]
     [Route("api/[controller]")]
     public class VotesController : BaseController
@@ -22,9 +23,7 @@ namespace Mayor.Web.Controllers
             this.issuesService = issuesService;
         }
 
-        // TODO: Workaround for the AFT.
         [HttpPost]
-        [IgnoreAntiforgeryToken]
         public async Task<ActionResult<PostVoteResponseModel>> Post(PostVoteInputModel input)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;

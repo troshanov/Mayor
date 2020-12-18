@@ -28,5 +28,9 @@
         int GetSolvedRequestIdById(int issueId);
 
         IEnumerable<T> GetTopTen<T>();
+
+        Task DeleteById(int id, string userId);
+
+        int GetAllIssueVotesCountByUserId(int id);
     }
 }

@@ -5,11 +5,22 @@
     this.ViewData["Title"] = "Issue";
 }
 
-<h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-3">
+        <h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+    </div>
+    <div class="col-md-1 offset-md-8" style="padding-top:16px;">
+        @if (this.User.FindFirst(ClaimTypes.NameIdentifier).Value == this.Model.CreatorUserId)
+        {
+            <span>
+                <a class="btn-danger btn-lg" asp-controller="Issues" asp-action="Delete" asp-route-id="@this.Model.Id"><i class="fas fa-trash-alt"></i></a>
+            </span>
+        }
+    </div>
+</div>
 <div class="row tm-row">
     <div class="col-12">
-        <hr class="tm-hr-primary tm-mb-55">
-        <!-- Video player 1422x800 -->
+        <hr class="tm-hr-primary tm-mb-55"> 
         <img src="@Model.ImageUrl" style="margin-bottom:30px; margin-top:-30px;" width="850" height="535" alt="Issue image">
         <span class="badge badge-warning badge-pill">@Model.StatusStatusCode</span>
     </div>
@@ -20,8 +31,14 @@
             <div class="mb-4">
                 <div class="row">
                     <div class="col-md-8">
-                        <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Title</h2>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Title</h2>
+                            </div>
+                            <div class="col-md-3">
 
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <a href="#" class="vote-btn card-link" onclick="vote(@Model.Id,voteBadge); return false;">Vote</a>
@@ -49,7 +66,7 @@
                         }
                     </span>
                 }
-                @if (this.User.IsInRole("Institution"))
+                @if (this.User.IsInRole("Institution") && Model.StatusStatusCode != "Solved")
                 {
                     <a class="btn-info btn-lg offset-8" asp-controller="Requests" asp-action="New" asp-route-id="@Model.Id">New Request</a>
                 }
@@ -58,7 +75,7 @@
                     <a class="btn-info btn-lg offset-8" asp-controller="Reviews" asp-action="New" asp-route-id="@Model.Id">New Review</a>
                 }
             </div>
-
+            <form method="post" id="antiForgeryForm"></form>
             <!-- Comments -->
             <div>
                 <h2 class="tm-color-primary tm-post-title">Comments</h2>
@@ -91,6 +108,7 @@
                     </div>
                 </form>
             </div>
+            <form method="post" id="antiForgeryForm"></form>
         </div>
     </div>
     <aside class="col-lg-4 tm-aside-col">
@@ -121,10 +139,14 @@
         }
         var id = '#comment-section';
         var data = { IssueId: issueId, Page: page };
+        var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
         $.ajax({
             type: 'POST',
             url: '/Comments/GetComments',
             data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-TOKEN': antiForgeryToken
+            },
             success: function (data) {
                 $(id).html(data);
                 $('#prev-page').attr('onclick', 'commentsPrev(' + (page - 1) + ', ' + issueId + ')');
@@ -141,10 +163,14 @@
         }
         var id = '#comment-section';
         var data = { IssueId: issueId, Page: page };
+        var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
         $.ajax({
             type: 'POST',
             url: '/Comments/GetComments',
             data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-TOKEN': antiForgeryToken
+            },
             success: function (data) {
                 $(id).html(data);
                 $('#prev-page').attr('onclick', 'commentsPrev(' + (page - 1) + ', ' + issueId + ')');

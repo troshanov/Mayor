@@ -69,5 +69,12 @@
                 .Where(c => c.IssueId == issueId)
                 .Count();
         }
+
+        public int GetTotalCommentsByUserId(string userId)
+        {
+            return this.commentsRepo.AllAsNoTracking()
+                .Where(c => c.UserId == userId)
+                .Count();
+        }
     }
 }

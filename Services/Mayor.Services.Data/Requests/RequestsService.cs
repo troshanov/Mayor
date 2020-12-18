@@ -12,6 +12,7 @@
     using Mayor.Services.Data.Issues;
     using Mayor.Services.Mapping;
     using Mayor.Web.ViewModels.Request;
+    using Microsoft.EntityFrameworkCore;
 
     public class RequestsService : IRequestsService
     {
@@ -44,10 +45,19 @@
             this.attRepo = attRepo;
         }
 
-        public async Task ApproveById(int id)
+        public async Task ApproveById(int id, string userId)
         {
             var request = this.requestsRepo.All()
                 .FirstOrDefault(r => r.Id == id);
+
+            var ownerId = this.issuesRepo.AllAsNoTracking()
+                .Include(i => i.Creator)
+                .FirstOrDefault(i => i.Id == request.IssueId).Creator.UserId;
+
+            if (ownerId != userId)
+            {
+                return;
+            }
 
             bool? isApproved = true;
             request.IsApproved = isApproved;
@@ -98,11 +108,20 @@
             await this.requestsRepo.SaveChangesAsync();
         }
 
-        public async Task DismissById(int id)
+        public async Task DismissById(int id, string userId)
         {
             var request = this.requestsRepo.All()
                 .Where(r => r.Id == id)
                 .FirstOrDefault();
+
+            var ownerId = this.issuesRepo.AllAsNoTracking()
+                .Include(i => i.Creator)
+                .FirstOrDefault(i => i.Id == request.IssueId).Creator.UserId;
+
+            if (ownerId != userId)
+            {
+                return;
+            }
 
             request.IsApproved = false;
             this.requestsRepo.Delete(request);

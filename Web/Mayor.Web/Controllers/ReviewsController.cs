@@ -10,8 +10,10 @@
     using Mayor.Services.Data.Reviews;
     using Mayor.Web.ViewModels.Request;
     using Mayor.Web.ViewModels.Review;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class ReviewsController : Controller
     {
         private readonly IRequestsService requestsService;
@@ -25,7 +27,7 @@
             IIssuesService issuesService,
             IReviewsService reviewsService,
             ICitizensService citizensService,
-            IInstitutionsService institutionsService) 
+            IInstitutionsService institutionsService)
         {
             this.requestsService = requestsService;
             this.issuesService = issuesService;
@@ -34,6 +36,7 @@
             this.institutionsService = institutionsService;
         }
 
+        [Authorize(Roles = "Citizen")]
         public IActionResult New(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -50,6 +53,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "Citizen")]
         public async Task<IActionResult> New(ReviewInputModel input)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -69,8 +73,7 @@
             var institutionId = this.institutionsService.GetBySolvedIssueId(input.IssueId).Id;
             await this.institutionsService.UpdateRating(institutionId);
 
-            // TODO: Redirect to Reviewed issue's page
-            return this.Redirect("/");
+            return this.Redirect($"/Issues/{input.IssueId}");
         }
     }
 }

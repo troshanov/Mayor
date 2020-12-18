@@ -13,8 +13,8 @@
 
         T GetById<T>(int requestId);
 
-        Task ApproveById(int id);
+        Task ApproveById(int id, string userId);
 
-        Task DismissById(int id);
+        Task DismissById(int id, string userId);
     }
 }

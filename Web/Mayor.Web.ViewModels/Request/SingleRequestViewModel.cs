@@ -20,7 +20,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public int RequesterId { get; set; }
+        public string RequesterUserId { get; set; }
 
         public string RequesterName { get; set; }
 

@@ -16,6 +16,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class IssuesController : Controller
     {
         private const int ItemsPerPage = 12;
@@ -39,7 +40,7 @@
             this.commentsService = commentsService;
         }
 
-        [Authorize(Roles = "Citizen, Administrator")]
+        [Authorize(Roles = "Citizen")]
         public IActionResult Create()
         {
             var viewModel = new CreateIssueInputModel();
@@ -49,7 +50,7 @@
 
         [HttpPost]
 
-        [Authorize(Roles = "Citizen, Administrator")]
+        [Authorize(Roles = "Citizen")]
         public async Task<IActionResult> Create(CreateIssueInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -118,6 +119,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize(Roles = "Citizen")]
         public IActionResult My(int id = 1)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -151,14 +153,23 @@
             return this.File(fileStream, contetType);
         }
 
+        [Authorize(Roles = "Institution")]
         public IActionResult Top()
         {
             var viewModel = new TopIssuesListViewModel
             {
                 Issues = this.issuesService.GetTopTen<TopIssueViewModel>(),
             };
-            ;
+
             return this.View(viewModel);
+        }
+
+        [Authorize(Roles = "Citizen")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            await this.issuesService.DeleteById(id, userId);
+            return this.Redirect("/Issues/My");
         }
     }
 }

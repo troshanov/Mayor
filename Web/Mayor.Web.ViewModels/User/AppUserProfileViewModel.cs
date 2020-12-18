@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Mayor.Web.ViewModels.User
+﻿namespace Mayor.Web.ViewModels.User
 {
     public class AppUserProfileViewModel
     {
@@ -23,6 +21,12 @@ namespace Mayor.Web.ViewModels.User
 
         public string Sex { get; set; }
 
+        public int IssuesSubmittedCount { get; set; }
+
+        public int TotalVotesCount { get; set; }
+
+        public int TotalCommentsCount { get; set; }
+
         // Institution properties
         public string Name { get; set; }
 
@@ -31,5 +35,9 @@ namespace Mayor.Web.ViewModels.User
         public string InstitutionType { get; set; }
 
         public decimal? Rating { get; set; }
+
+        public int SolvedIsseusCount { get; set; }
+
+        public int ActiveIssuesCount { get; set; }
     }
 }

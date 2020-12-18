@@ -5,7 +5,7 @@
 }
 <div class="row">
     <div class="col-md-3">
-    <h1 style="color:tomato;">@this.ViewData["Title"]</h1>
+        <h1 style="color:tomato;">@this.ViewData["Title"]</h1>
     </div>
     <div class="col-md-3 offset-md-6" style="padding-left: 50px; padding-top: 10px;">
         @if (Model.IsProfileOwner)
@@ -20,7 +20,7 @@
 <hr class="tm-hr-primary" style="margin-bottom:35px; margin-top: 0px;">
 
 <div class="offset-md-10" style="margin-top:20px;">
-    
+
 </div>
 <div class="row form-wrapper" style="margin-left:0px; margin-right:0px; padding-top:0px; padding-left:0px;">
     <div class="col-md-6" style="padding-left:0px;">
@@ -30,7 +30,25 @@
         @if (!Model.IsCitizen)
         {
             <div style="margin-left:5px;">
-                <p>Rating: <span class="badge badge-warning badge-pill"> @Model.Rating?.ToString("f2") / 5</span></p>
+                <p style="margin-bottom: 0px;">Rating: <span class="badge badge-warning badge-pill"> @Model.Rating?.ToString("f2") / 5</span></p>
+            </div>
+            <div style="margin-left:5px;">
+                <p style="margin-bottom: 0px;">Solved Issues: <span class="badge badge-warning badge-pill"> @Model.SolvedIsseusCount</span></p>
+            </div>
+            <div style="margin-left:5px;">
+                <p style="margin-bottom: 0px;">Active Issues: <span class="badge badge-warning badge-pill"> @Model.ActiveIssuesCount</span></p>
+            </div>
+        }
+        else
+        {
+            <div style="margin-left:5px;">
+                <p style="margin-bottom: 0px;">Issues submitted: <span class="badge badge-warning badge-pill"> @Model.IssuesSubmittedCount</span></p>
+            </div>
+            <div style="margin-left:5px;">
+                <p style="margin-bottom: 0px;">Votes Received: <span class="badge badge-warning badge-pill"> @Model.TotalVotesCount</span></p>
+            </div>
+            <div style="margin-left:5px;">
+                <p style="margin-bottom: 0px;">Total Comments: <span class="badge badge-warning badge-pill"> @Model.TotalCommentsCount</span></p>
             </div>
         }
     </div>
@@ -71,7 +89,7 @@
         }
         <div>
             <p>Description:</p>
-            <textarea class="form-control" rows="10">@Model.Description</textarea>
+            <textarea class="form-control" readonly rows="10">@Model.Description</textarea>
         </div>
     </div>
 </div>

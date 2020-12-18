@@ -1,9 +1,10 @@
-﻿using Mayor.Web.ViewModels.Comment;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Mayor.Services.Data.Comments
+﻿namespace Mayor.Services.Data.Comments
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using Mayor.Web.ViewModels.Comment;
+
     public interface ICommentsService
     {
         Task CreateAsync(CommentInputModel input);
@@ -11,5 +12,7 @@ namespace Mayor.Services.Data.Comments
         IEnumerable<CommentInListViewModel> GetAllByIssueId(int page, int issueId, int itemsPerPage = 12);
 
         int GetCountByIssueId(int issueId);
+
+        int GetTotalCommentsByUserId(string userId);
     }
 }

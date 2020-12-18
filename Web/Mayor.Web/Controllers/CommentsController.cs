@@ -5,8 +5,10 @@
     using Mayor.Services.Data.Comments;
     using Mayor.Web.ViewComponents;
     using Mayor.Web.ViewModels.Comment;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class CommentsController : Controller
     {
         private readonly ICommentsService commentsService;
@@ -31,7 +33,6 @@
         }
 
         [HttpPost]
-        [IgnoreAntiforgeryToken]
         public IActionResult GetComments([FromBody] IssueCommentsInputModel input)
         {
             return this.ViewComponent(typeof(UsersCommentsViewComponent), new { page = input.Page, issueId = input.IssueId });

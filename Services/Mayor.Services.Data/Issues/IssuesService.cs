@@ -103,9 +103,23 @@
             await this.issueTagsService.CraeteAsync(issue.Id, input.Tags);
         }
 
+        public async Task DeleteById(int id, string userId)
+        {
+            var issue = this.issuesRepo.All()
+                .Include(i => i.Creator)
+                .FirstOrDefault(i => i.Id == id);
+
+            if (issue.Creator.UserId != userId)
+            {
+                return;
+            }
+
+            this.issuesRepo.Delete(issue);
+            await this.issuesRepo.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
         {
-            // TODO: Order items
             return this.issuesRepo.AllAsNoTracking()
                 .Where(i => i.Pictures.Any())
                 .OrderByDescending(i => i.CreatedOn)
@@ -127,7 +141,6 @@
 
         public IEnumerable<T> GetAllByUserId<T>(int page, string userId, int itemsPerPage = 12)
         {
-            // Use CitizensService instead
             var citizenId = this.citizenRepo.All()
                 .Where(c => c.UserId == userId)
                 .Select(c => c.Id)
@@ -139,6 +152,14 @@
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
+        }
+
+        public int GetAllIssueVotesCountByUserId(int id)
+        {
+            return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.CreatorId == id)
+                .SelectMany(i => i.Votes)
+                .Count();
         }
 
         public T GetById<T>(int id)
@@ -203,7 +224,7 @@
             if (requesterId != 0)
             {
                 issue.SolverId = requesterId;
-            };
+            }
 
             await this.issuesRepo.SaveChangesAsync();
         }

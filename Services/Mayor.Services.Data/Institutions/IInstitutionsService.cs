@@ -19,5 +19,9 @@
         Task UpdateRating(int institutionId);
 
         Institution GetById(int id);
+
+        int GetSolvedIssuesCountById(int id);
+
+        int GetActiveIssuesCountById(int id);
     }
 }

@@ -17,7 +17,7 @@
                 <span class="badge badge-warning badge-pill">@Model.SolveRequest.RequesterRating.ToString("f2")</span>
             </li>
             <li class="list-group-item">
-                <a href="#" class="card-link d-flex justify-content-center">Profile</a>
+                <a asp-controller="Users" asp-action="Profile" asp-route-profileId="@Model.SolveRequest.RequesterUserId" class="card-link d-flex justify-content-center">Profile</a>
             </li>
         </ul>
 

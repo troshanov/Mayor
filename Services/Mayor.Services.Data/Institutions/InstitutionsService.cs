@@ -46,6 +46,13 @@
                 .FirstOrDefault(i => i.Id == id);
         }
 
+        public int GetSolvedIssuesCountById(int id)
+        {
+            return this.issuesRepo.AllAsNoTrackingWithDeleted()
+                .Where(i => i.SolverId != null && i.SolverId == id)
+                .Count();
+        }
+
         public Institution GetBySolvedIssueId(int issueId)
         {
             var institutionId = this.issuesRepo.AllAsNoTracking()
@@ -80,8 +87,15 @@
             var institution = await this.institutionRepo.All()
                 .FirstOrDefaultAsync(i => i.Id == institutionId);
 
-            institution.Rating = (decimal) rating;
+            institution.Rating = (decimal)rating;
             await this.institutionRepo.SaveChangesAsync();
+        }
+
+        public int GetActiveIssuesCountById(int id)
+        {
+            return this.issuesRepo.AllAsNoTracking()
+                .Where(i => i.StatusId == 3 && i.IssueRequests.Any(ir => ir.IsApproved == true && ir.RequesterId == id))
+                .Count();
         }
     }
 }
