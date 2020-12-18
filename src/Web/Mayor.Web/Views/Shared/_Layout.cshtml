@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayor</title>
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
-    @*<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">*@ <!-- https://fonts.google.com/ -->
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/templatemo-xtra-blog.css" rel="stylesheet">
 </head>
@@ -118,12 +117,6 @@
                                 <a asp-area="" asp-controller="Home" asp-action="About" class="tm-nav-link">
                                     <i class="fas fa-question"></i>
                                     About Mayor
-                                </a>
-                            </li>
-                            <li class="tm-nav-item">
-                                <a href="contact.html" class="tm-nav-link">
-                                    <i class="fas fa-at"></i>
-                                    Contact Us
                                 </a>
                             </li>
                             @if (this.User.Identity.IsAuthenticated)

@@ -84,12 +84,10 @@
                 <nav aria-label="...">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
-                            <a id="prev-page" class="page-link" onclick="commentsPrev(0, @Model.Id)">Previous</a>
-                            @*<a class="page-link" asp-controller="Comments" asp-action="GetComments" asp-route-issueId="@Model.Id" asp-route-page="@Model.PreviousPageNumber">Previous</a>*@
+                            <a id="prev-page" class="page-link" onclick="commentsPrev(0, @Model.Id)">Previous</a>                      
                         </li>
                         <li class="page-item">
                             <a id="next-page" class="page-link" onclick="commentsNext(2, @Model.Id)">Next</a>
-                            @*<a class="page-link" asp-controller="Comments" asp-action="GetComments" asp-route-issueId="@Model.Id" asp-route-page="@Model.NextPageNumber">Next</a>*@
                         </li>
                     </ul>
                 </nav>
@@ -111,9 +109,10 @@
             <form method="post" id="antiForgeryForm"></form>
         </div>
     </div>
-    <aside class="col-lg-4 tm-aside-col">
+
+    <aside class="col-lg-4 tm-aside-col" style="padding-right:0px;padding-left:70px;">
+        <hr class="mb-3 tm-hr-primary">
         <div class="tm-post-sidebar">
-            <hr class="mb-3 tm-hr-primary">
             <h2 class="tm-mb-40 tm-post-title tm-color-primary">@Model.CategoryName</h2>
             @for (int i = 0; i < Model.SidebarIssues.Count(); i++)
             {
@@ -126,8 +125,6 @@
                     </figure>
                 </a>
             }
-
-            @*<button id="b1" class="btn-info col-md-5 offset-md-7" style="font-size:20px">Next <i class="fa fa-chevron-right"></i></button>*@
         </div>
     </aside>
 </div>
