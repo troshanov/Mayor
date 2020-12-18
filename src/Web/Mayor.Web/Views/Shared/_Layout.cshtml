@@ -58,24 +58,24 @@
                                         My Profile
                                     </a>
                                 </li>
-                                <li class="tm-nav-item">
-                                    <a asp-area="" asp-controller="Issues" asp-action="Create" class="tm-nav-link">
-                                        <i class="fas fa-plus"></i>
-                                        New Issue
-                                    </a>
-                                </li>
-                                <li class="tm-nav-item">
-                                    <a asp-area="" asp-controller="Issues" asp-action="My" class="tm-nav-link">
-                                        <i class="fas fa-list-ul"></i>
-                                        My Issues
-                                    </a>
-                                </li>
                                 @if (this.User.IsInRole("Citizen"))
                                 {
+                                    <li class="tm-nav-item">
+                                        <a asp-area="" asp-controller="Issues" asp-action="Create" class="tm-nav-link">
+                                            <i class="fas fa-plus"></i>
+                                            New Issue
+                                        </a>
+                                    </li>
                                     <li class="tm-nav-item">
                                         <a asp-area="" asp-controller="Requests" asp-action="All" class="tm-nav-link">
                                             <i class="fas fa-exclamation"></i>
                                             Requests
+                                        </a>
+                                    </li>
+                                    <li class="tm-nav-item">
+                                        <a asp-area="" asp-controller="Issues" asp-action="My" class="tm-nav-link">
+                                            <i class="fas fa-list-ul"></i>
+                                            My Issues
                                         </a>
                                     </li>
                                 }
@@ -225,6 +225,7 @@
                             </a>
                         </div>
                     </div>
+                    <partial name="_CookieConsentPartial" />
                     @this.RenderBody()
                 </main>
 

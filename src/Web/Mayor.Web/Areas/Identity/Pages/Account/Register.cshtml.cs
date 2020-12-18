@@ -1,30 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Mayor.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using Mayor.Web.ViewModels.User;
-using Mayor.Services.Data.Citizens;
-using Mayor.Services.Data.Institutions;
-
-namespace Mayor.Web.Areas.Identity.Pages.Account
+﻿namespace Mayor.Web.Areas.Identity.Pages.Account
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
+
+    using Mayor.Data.Models;
+    using Mayor.Services.Data.Citizens;
+    using Mayor.Services.Data.Institutions;
+    using Mayor.Web.ViewModels.User;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.WebUtilities;
+    using Microsoft.Extensions.Logging;
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly Services.Messaging.IEmailSender emailSender;
         private readonly ICitizensService citizensService;
         private readonly IInstitutionsService institutionsService;
 
@@ -32,14 +32,14 @@ namespace Mayor.Web.Areas.Identity.Pages.Account
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
+            Mayor.Services.Messaging.IEmailSender emailSender,
             ICitizensService citizensService,
             IInstitutionsService institutionsService)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
             this._logger = logger;
-            this._emailSender = emailSender;
+            this.emailSender = emailSender;
             this.citizensService = citizensService;
             this.institutionsService = institutionsService;
         }
@@ -89,7 +89,9 @@ namespace Mayor.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: this.Request.Scheme);
 
-                    await this._emailSender.SendEmailAsync(
+                    await this.emailSender.SendEmailAsync(
+                        "mayor.customer.service@abv.bg",
+                        "Mayor Support",
                         this.Input.Email,
                         "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

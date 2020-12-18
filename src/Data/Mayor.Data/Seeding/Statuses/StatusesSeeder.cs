@@ -15,9 +15,9 @@
                 return;
             }
 
-            dbContext.Statuses.Add(new Status { StatusCode = "New" });
-            dbContext.Statuses.Add(new Status { StatusCode = "In Process" });
             dbContext.Statuses.Add(new Status { StatusCode = "Solved" });
+            dbContext.Statuses.Add(new Status { StatusCode = "In Process" });
+            dbContext.Statuses.Add(new Status { StatusCode = "New" });
         }
     }
 }
