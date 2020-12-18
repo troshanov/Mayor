@@ -8,7 +8,7 @@
 <hr class="tm-hr-primary tm-mb-55">
 
 <div class="row">
-    <div class="card col-md-4" style="border: 2px solid darkturquoise; border-radius: 9px 6px 20px 22px;">
+    <div class="card col-md-4" style="border: 2px solid darkturquoise; border-radius: 9px 6px 20px 22px; display:inline-table;">
         <img class="card-img-top" width="100" height="400" src="@Model.RequesterPicture" alt="Profile picture">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Name: @Model.RequesterName</li>
@@ -24,9 +24,9 @@
     </div>
     <div class="col-md-6 offset-md-1">
         <div class="row">
-            <div class="form-wrapper" style="padding-left:70px;">
-                <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">@Model.IssueTitle</h2>
-                <p class="tm-mb-40 text-muted">@Model.CreatedOn.ToString("g")</p>
+            <div class="form-wrapper" style="padding-left:10px; padding-right:10px;">
+                <h2 class="pt-2 tm-mb-10 tm-color-primary tm-post-title d-flex justify-content-center">@Model.IssueTitle</h2>
+                <p class="tm-mb-40 text-muted d-flex justify-content-center">@Model.CreatedOn.ToString("g")</p>
                 <p>
                     @Model.Description
                 </p>

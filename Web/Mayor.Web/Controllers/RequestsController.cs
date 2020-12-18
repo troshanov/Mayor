@@ -65,8 +65,7 @@
                 return this.View(input);
             }
 
-            // TODO: redirect to the Issue itself
-            return this.Redirect("/");
+            return this.Redirect($"/Issues/{input.IssueId}");
         }
 
         [Authorize(Roles = "Citizen")]

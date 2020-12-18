@@ -15,6 +15,8 @@
 
         IEnumerable<T> GetAllByUserId<T>(int page, string userId, int itemsPerPage = 12);
 
+        IEnumerable<T> GetAllPendingByUserId<T>(int page, int id, int itemsPerPage = 12);
+
         int GetCount();
 
         T GetById<T>(int id);
@@ -32,5 +34,7 @@
         Task DeleteById(int id, string userId);
 
         int GetAllIssueVotesCountByUserId(int id);
+
+        int GetPendingIssuesCountById(int id);
     }
 }

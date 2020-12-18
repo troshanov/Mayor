@@ -9,6 +9,7 @@
     using Mayor.Services.Data.Attachments;
     using Mayor.Services.Data.Categories;
     using Mayor.Services.Data.Comments;
+    using Mayor.Services.Data.Institutions;
     using Mayor.Services.Data.Issues;
     using Mayor.Web.ViewModels.Comment;
     using Mayor.Web.ViewModels.Issue;
@@ -25,19 +26,22 @@
         private readonly IAttachmentsService attService;
         private readonly IWebHostEnvironment environment;
         private readonly ICommentsService commentsService;
+        private readonly IInstitutionsService institutionsService;
 
         public IssuesController(
             IIssuesService issuesService,
             ICategoriesService categoriesService,
             IAttachmentsService attService,
             IWebHostEnvironment environment,
-            ICommentsService commentsService)
+            ICommentsService commentsService,
+            IInstitutionsService institutionsService)
         {
             this.issuesService = issuesService;
             this.categoriesService = categoriesService;
             this.attService = attService;
             this.environment = environment;
             this.commentsService = commentsService;
+            this.institutionsService = institutionsService;
         }
 
         [Authorize(Roles = "Citizen")]
@@ -170,6 +174,21 @@
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.issuesService.DeleteById(id, userId);
             return this.Redirect("/Issues/My");
+        }
+
+        [Authorize(Roles = "Institution")]
+        public IActionResult Active(int id = 1)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var institutionId = this.institutionsService.GetByUserId(userId).Id;
+            var viewModel = new IssueListViewModel
+            {
+                PageNumber = id,
+                ItemsPerPage = ItemsPerPage,
+                IssuesCount = this.issuesService.GetPendingIssuesCountById(institutionId),
+                Issues = this.issuesService.GetAllPendingByUserId<IssueInListViewModel>(id, institutionId, ItemsPerPage),
+            };
+            return this.View(viewModel);
         }
     }
 }

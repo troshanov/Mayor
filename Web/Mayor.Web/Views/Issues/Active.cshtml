@@ -1,0 +1,45 @@
+﻿@using Mayor.Web.ViewModels.Issue
+@model IssueListViewModel
+@{
+    this.ViewData["Title"] = "Active Issues";
+    var num = 1;
+}
+
+<h1 class="col-12" style="color:tomato; margin-bottom:20px;">@this.ViewData["Title"]</h1>
+<hr class="tm-hr-primary tm-mb-55">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Issue Title</th>
+            <th scope="col">Address</th>
+            <th scope="col">Submission Date</th>
+            <th scope="col">Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var issue in Model.Issues)
+        {
+            <tr>
+                <th scope="row">@num</th>
+                <td>@issue.Title</td>
+                <td>@issue.Address</td>
+                <td>@issue.CreatedOn.ToString("d")</td>
+                <th><a asp-controller="Issues" asp-action="Single" asp-route-id="@issue.Id">Open</a></th>
+            </tr>
+
+            num++;
+        }
+    </tbody>
+</table>
+<nav aria-label="..." style="margin-top:15px;">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) {<text>disabled</text>}">
+            <a class="page-link" asp-action="Active" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+        </li>
+        <li class="page-item  @if (!Model.HasNextPage) {<text>disabled</text>}">
+            <a class="page-link" asp-action="Active" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>

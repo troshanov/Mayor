@@ -28,7 +28,7 @@
                 <td>@request.RequesterName</td>
                 <td>@request.IssueTitle</td>
                 <td>@request.CreatedOn.ToString("g")</td>
-                <th class="d-flex justify-content-center"><input type="checkbox" onclick="return false;" @if(request.IsSolveRequest) {<text>checked</text>}/></th>
+                <th class="d-flex justify-content-center" style="padding-top: 21px;"><input type="checkbox" onclick="return false;" @if(request.IsSolveRequest) {<text>checked</text>}/></th>
                 <th><a asp-controller="Requests" asp-action="Single" asp-route-id="@request.Id">Open</a></th>
             </tr>
         }

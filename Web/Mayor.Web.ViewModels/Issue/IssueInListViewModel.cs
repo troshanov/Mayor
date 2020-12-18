@@ -1,5 +1,6 @@
 ﻿namespace Mayor.Web.ViewModels.Issue
 {
+    using System;
     using System.Linq;
 
     using AutoMapper;
@@ -16,6 +17,8 @@
         public string Description { get; set; }
 
         public string Address { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public string StatusStatusCode { get; set; }
 

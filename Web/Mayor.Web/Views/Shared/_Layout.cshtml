@@ -70,12 +70,24 @@
                                         My Issues
                                     </a>
                                 </li>
-                                <li class="tm-nav-item">
-                                    <a asp-area="" asp-controller="Requests" asp-action="All" class="tm-nav-link">
-                                        <i class="fas fa-exclamation"></i>
-                                        Requests
-                                    </a>
-                                </li>
+                                @if (this.User.IsInRole("Citizen"))
+                                {
+                                    <li class="tm-nav-item">
+                                        <a asp-area="" asp-controller="Requests" asp-action="All" class="tm-nav-link">
+                                            <i class="fas fa-exclamation"></i>
+                                            Requests
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="tm-nav-item">
+                                        <a asp-area="" asp-controller="Issues" asp-action="Active" class="tm-nav-link">
+                                            <i class="fas fa-exclamation"></i>
+                                            Active Issues
+                                        </a>
+                                    </li>
+                                }
                                 <li class="tm-nav-item">
                                     <a class="tm-nav-link" asp-controller="Issues" asp-area="" asp-action="All" asp-route-id="1">
                                         <i class="fas fa-city"></i>
