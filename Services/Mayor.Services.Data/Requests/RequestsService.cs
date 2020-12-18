@@ -64,11 +64,11 @@
 
             if (request.IsSolveRequest)
             {
-               await this.issuesService.UpdateStatusById(request.IssueId, 4, request.RequesterId);
+               await this.issuesService.UpdateStatusById(request.IssueId, 3, request.RequesterId);
             }
             else
             {
-               await this.issuesService.UpdateStatusById(request.IssueId, 3);
+               await this.issuesService.UpdateStatusById(request.IssueId, 2);
             }
 
             this.requestsRepo.Update(request);

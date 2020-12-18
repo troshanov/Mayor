@@ -94,7 +94,7 @@
         public int GetActiveIssuesCountById(int id)
         {
             return this.issuesRepo.AllAsNoTracking()
-                .Where(i => i.StatusId == 3 && i.IssueRequests.Any(ir => ir.IsApproved == true && ir.RequesterId == id))
+                .Where(i => i.StatusId == 2 && i.IssueRequests.Any(ir => ir.IsApproved == true && ir.RequesterId == id))
                 .Count();
         }
     }

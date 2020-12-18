@@ -30,7 +30,7 @@
         @if (!Model.IsCitizen)
         {
             <div style="margin-left:5px;">
-                <p style="margin-bottom: 0px;">Rating: <span class="badge badge-warning badge-pill"> @Model.Rating?.ToString("f2") / 5</span></p>
+                <p style="margin-bottom: 0px;">Rating: <span class="badge badge-warning badge-pill"> @if (Model.Rating == null) { <text>0</text>  } else {@Model.Rating?.ToString("f2")} / 5</span></p>
             </div>
             <div style="margin-left:5px;">
                 <p style="margin-bottom: 0px;">Solved Issues: <span class="badge badge-warning badge-pill"> @Model.SolvedIsseusCount</span></p>

@@ -58,7 +58,7 @@
                 Description = input.Description,
                 Address = address,
                 CategoryId = input.CategoryId,
-                StatusId = 2,
+                StatusId = 1,
                 CreatorId = citizenId,
             };
 
@@ -168,7 +168,7 @@
                 .Where(i => i.Pictures.Any() &&
                 i.IssueRequests.Any(ir => ir.IsApproved == true &&
                 ir.RequesterId == id) &&
-                i.StatusId == 3)
+                i.StatusId == 2)
                 .OrderByDescending(i => i.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -213,7 +213,7 @@
             return this.issuesRepo.AllAsNoTracking()
                 .Where(i => i.Pictures.Any() &&
                 i.IssueRequests.Any(ir => ir.IsApproved == true && ir.RequesterId == id) &&
-                i.StatusId == 3)
+                i.StatusId == 2)
                 .Count();
         }
 
@@ -231,7 +231,7 @@
         public IEnumerable<T> GetTopTen<T>()
         {
            return this.issuesRepo.AllAsNoTracking()
-                .Where(i => i.StatusId != 4)
+                .Where(i => i.StatusId != 3)
                 .OrderByDescending(i => i.Votes.Count)
                 .Take(10)
                 .To<T>()
