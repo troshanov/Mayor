@@ -33,9 +33,26 @@ based on which type they choose.
 ### All Issues (logged)
 <img width="953" alt="Home page" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Issues2.jpg">
 
-### All Issues (logged)
-<img width="953" alt="Home page" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Profile.jpg">
+### Citizen's Profile (logged)
+<img width="953" alt="Citizen's Profile" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Profile.jpg">
 
+### Institution's Profile (logged)
+<img width="953" alt="Institution's Profile" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/InstProfile.jpg">
+
+### Single Issue (logged)
+<img width="953" alt="Home page" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Issue.jpg">
+
+### New Request (logged, Institution Role)
+<img width="953" alt="New Request" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/NewRequest.jpg">
+
+### All Requests Received (logged, Citizen Role)
+<img width="953" alt="Received Requests" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Requests.jpg">
+
+### Process Request (logged, Citizen Role)
+<img width="953" alt="Process Request" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/SingleRequest.jpg">
+
+### Top Ten (logged, Citizen Role)
+<img width="953" alt="Top Ten" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/TopTen.jpg">
 
 ## Credits
   
