@@ -30,6 +30,12 @@ based on which type they choose.
 
 ## Screenshots:
 
+### All Issues (logged)
+<img width="953" alt="Home page" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Issues2.jpg">
+
+### All Issues (logged)
+<img width="953" alt="Home page" src="https://github.com/troshanov/Mayor/blob/master/src/Web/Mayor.Web/wwwroot/img/git/Profile.jpg">
+
 
 ## Credits
   
