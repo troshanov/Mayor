@@ -38,11 +38,12 @@
                     <br />
                     <a asp-controller="Requests" asp-action="Download" asp-route-id="@attId">Attachment @num</a>
                 }
-                <div class="row">
+                <br><br />
+                <div class="row" style="padding-left: 70px;">
                     <div class="col-md-5">
                         <a class="btn-success btn-lg" asp-controller="Requests" asp-action="Approve" asp-route-id="@this.ViewData["id"]">Approve</a>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 offset-md-2">
                         <a class="btn-danger btn-lg" asp-controller="Requests" asp-action="Dismiss" asp-route-id="@this.ViewData["id"]">Dismiss</a>
                     </div>
                 </div>
