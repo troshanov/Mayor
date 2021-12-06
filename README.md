@@ -6,8 +6,8 @@ and there are 2 user types - Citizen (issue-creator) and Institution (issue-solv
 based on which type they choose.
 
 ## Table of Contents
-1. [Technology stack]
-3. [Credits]
+1. Technology stack
+2. Credits
 
 ## Technology stack:
 
